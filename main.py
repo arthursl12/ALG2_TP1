@@ -1,5 +1,7 @@
 import numpy as np
 
+NOME_ARQ = 'sarscov2.fasta'
+
 def arquivoString(nomeArq):
     with open(nomeArq,'r') as arquivo:
         next(arquivo)     # Ignorar cabeçalho
@@ -12,7 +14,7 @@ def arquivoString(nomeArq):
 
 
 def main():
-    string = arquivoString('sarscov2.fasta')
+    string = arquivoString(NOME_ARQ)
     print(string[0:800])
 
 
