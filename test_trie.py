@@ -1,13 +1,6 @@
 import pytest
 from trie import CompactTrie, Node, checkPrefixSubstring
 
-# A árvore de sufixos deverá ser implementada através de uma Trie compacta
-
-# Dessa forma, os nós da árvore serão rotulados por pares de índices, identificando 
-# início e fim da substring no texto. 
-
-# A árvore pode ser construída com um algoritmo quadrático, inserindo os sufixos
-# um a um. 
 
 # Deve-se implementar também o algoritmo que identifica a maior substring que se 
 # repete no texto. Isso é, o algoritmo deve localizar e retornar a maior substring
@@ -17,6 +10,11 @@ from trie import CompactTrie, Node, checkPrefixSubstring
 # Sua implementação deve retornar essa string e o número de ocorrências no
 # texto. Poderão ser introduzidas modificações na estrutura de dados para facilitar
 # a implementação dessa funcionalidade.
+
+
+
+# Dessa forma, os nós da árvore serão rotulados por pares de índices, identificando 
+# início e fim da substring no texto. 
 class Test_Node:
     def test_init_raiz(self):
         node = Node()
@@ -27,6 +25,11 @@ class Test_Node:
         node = Node(0,7)
         assert node.inicio == 0
         assert node.fim == 7
+
+    def test_tipos(self):
+        node = Node(0,7)
+        assert type(node.inicio) == int
+        assert type(node.fim) == int
 
     def test_modificacao_inicio(self):
         node1 = Node(0,7)
@@ -74,15 +77,21 @@ class Test_checkPrefix:
     def test_more_match_prefix(self):
         assert checkPrefixSubstring('sell','sells') == 4
     
+    def test_equals(self):
+        assert checkPrefixSubstring('sell','sell') == 4
+        assert checkPrefixSubstring('she','she') == 3
+
     def test_no_prefix_match(self):
         assert checkPrefixSubstring('sell','mysells') == 0
     
-
+# A árvore de sufixos deverá ser implementada através de uma Trie compacta
 class Test_CompactTrie:
     @classmethod
     def setup_class(cls):
         cls.texto = 'she'
 
+    # A árvore pode ser construída com um algoritmo quadrático, inserindo os sufixos
+    # um a um. 
     def test_init(self):
         trie = CompactTrie(self.texto)
     
@@ -92,13 +101,15 @@ class Test_CompactTrie:
 
     def test_insercao(self):
         trie = CompactTrie(self.texto)
-        trie.insert('she')
+        trie.insert(0,2)
         assert trie.isEmpty() == False
 
-    def test_busca(self):
+    def test_busca_simples(self):
         trie = CompactTrie(self.texto)
-        assert trie.find('A') == False
-        trie.insert('she')
-        assert trie.find('she') == True
+        assert trie.find(1,2) == None
+        trie.insert(0,2)
+        node = Node(0,2)
+        assert trie.find(0,2).inicio == node.inicio
+        assert trie.find(0,2).fim == node.fim
 
 
