@@ -11,52 +11,6 @@ from trie import CompactTrie, Node, checkPrefixSubstring
 # texto. Poderão ser introduzidas modificações na estrutura de dados para facilitar
 # a implementação dessa funcionalidade.
 
-
-
-# Dessa forma, os nós da árvore serão rotulados por pares de índices, identificando 
-# início e fim da substring no texto. 
-class Test_Node:
-    def test_init_raiz(self):
-        node = Node()
-        assert node.inicio == None
-        assert node.fim == None
-
-    def test_init(self):
-        node = Node(0,7)
-        assert node.inicio == 0
-        assert node.fim == 7
-
-    def test_tipos(self):
-        node = Node(0,7)
-        assert type(node.inicio) == int
-        assert type(node.fim) == int
-
-    def test_modificacao_inicio(self):
-        node1 = Node(0,7)
-        node1.setInicio(2)
-        assert node1.inicio == 2
-        assert node1.fim == 7
-
-    def test_modificacao_fim(self):
-        node2 = Node(0,7)
-        node2.setFim(4)
-        assert node2.inicio == 0
-        assert node2.fim == 4
-
-    def test_sets_invalidos(self):
-        node1 = Node(0,7)
-        node2 = Node(3,7)
-        with pytest.raises(Exception):
-            node1.setInicio(10)
-        with pytest.raises(Exception):
-            node2.setFim(1)
-    
-    def test_no_um_caractere(self):
-        node = Node(0,0)
-        node1 = Node(1,1)
-        node2 = Node(45,45)
-
-
 class Test_checkPrefix:
     def test_no_match(self):
         assert checkPrefixSubstring('','') == 0
@@ -109,7 +63,49 @@ class Test_CompactTrie:
         assert trie.find(1,2) == None
         trie.insert(0,2)
         node = Node(0,2)
-        assert trie.find(0,2).inicio == node.inicio
-        assert trie.find(0,2).fim == node.fim
+        assert trie.find(0,2) == node
+    
 
+class Test_BuscaCompactTrie:
+    @classmethod
+    def setup_class(cls):
+        cls.texto = 'she_sells_sea_shells_by_the_sea'
+    
+    def setup_method(self, method):
+        self.trie = None
+        self.trie = CompactTrie(self.texto)
 
+        n1 = Node(17,19)
+        n2 = Node()
+        n3 = Node(1,2)
+        n3.children.append(n1)
+        n3.children.append(n2)
+
+        n4 = Node(6,8)
+        n5 = Node(12,12)
+        n6 = Node(5,5)
+        n6.children.append(n4)
+        n6.children.append(n5)
+        
+        n7 = Node(0,0)
+        n7.children.append(n3)
+        n7.children.append(n6)
+
+        n8 = Node(24,26)
+        n9 = Node(21,22)
+
+        self.trie.root.children.append(n8)
+        self.trie.root.children.append(n9)
+        self.trie.root.children.append(n7)
+
+    def test_busca_complexa(self):
+        node = Node(21,22)
+        assert self.trie.find(21,22) == node
+        node = Node(24,26)
+        assert self.trie.find(24,26) == node
+        node = Node(17,19)
+        assert self.trie.find(14,19) == node
+        node = Node()
+        assert self.trie.find(0,2) == node
+        node = Node(6,8)
+        assert self.trie.find(4,8) == node

@@ -13,44 +13,57 @@ class CompactTrie:
             newNode = Node(inicio, fim)
             self.root.children.append(newNode)
         else:
-            self.find
+            lastNode = self.find(inicio, fim)
+            if lastNode is None:
+                newNode = Node(inicio, fim)
+                self.root.children.append(newNode)
+            
             raise("TODO")
 
-    
-    # Procura a substring texto[a,b] na Trie
+    def __casamentoValido(self, match, casPrevio):
+        """
+        Devem ser verdadeiros:
+        (1) se a string desejada tem algum prefixo em comum com o 
+        casamento dos nós acima juntamente com a label do nó atual
+        (2) se realmente casamos um prefixo maior (senão apenas casamos o que
+        já havíamos casado)
+        """
+        return match >= 1 and \
+               match - len(casPrevio) >= 1
+
     def find(self, a, b):
+        """
+        Procura a substring texto[a,b] na Trie
+        Retorna último nó que representa a substring na Trie
+        Retorna None se a substring não for encontrada 
+        """
         if self.isEmpty():
             return None
-
-        # Iteração inicial pela raiz
         nodeAtual = self.root
-        string = self.texto[a:b+1]
-        padraoAtual = ''
-        print('1.1',nodeAtual,nodeAtual.inicio,nodeAtual.fim)
-        for child in nodeAtual.children:
-            print('2.1.0',nodeAtual,nodeAtual.inicio,nodeAtual.fim)
-            print('2.1.1',child,child.inicio,child.fim)
-            padraoNode = self.texto[child.inicio:child.fim+1]
-            print('PN',padraoNode)
-            print('PA',padraoAtual)
-            match = checkPrefixSubstring(string, padraoAtual+padraoNode)
-            if match >= 1:
-                print('M',match)
+        string = self.texto[a:b+1]      #String de interesse
+        casPrevio = ''                  #Padrão já casado nos nós acima
+        it = iter(nodeAtual.children)
+        child = next(it, None)
+        while child is not None:
+            if (child.inicio == None and child.fim == None):
+                # Chegamos num nó "vazio", indicando uma palavra inserida que 
+                # termina ali
+                if (casPrevio == string):
+                    nodeAtual = child
+                    break
+                else:
+                    child = next(it, None)
+                    continue
+            labelNode = self.texto[child.inicio:child.fim+1]
+            casParcial = casPrevio + labelNode
+            match = checkPrefixSubstring(string, casParcial)
+            if self.__casamentoValido(match, casPrevio):
                 nodeAtual = child
-                padraoAtual += string[0:match+1]
-
-        # Iterações para os nós seguintes
-        print('1.2',nodeAtual,nodeAtual.inicio,nodeAtual.fim)
-        print(padraoAtual)
-        for child in nodeAtual.children:
-            print('2.2.0',nodeAtual,nodeAtual.inicio,nodeAtual.fim)
-            print('2.2.1',child,child.inicio,child.fim)
-            padraoNode = self.texto[child.inicio, child.fim+1]
-            match = checkPrefixSubstring(string, padraoAtual+padraoNode)
-            if match >= 1:
-                nodeAtual = child
-                padraoAtual += string[0:match+1]
-        print('3',nodeAtual,nodeAtual.inicio,nodeAtual.fim)
+                it = iter(nodeAtual.children)
+                child = next(it, None)
+                casPrevio = string[0:match]
+                continue
+            child = next(it, None)
         return nodeAtual
 
         
@@ -71,6 +84,13 @@ class Node:
         if novoFim < self.inicio:
             raise Exception
         self.fim = novoFim
+    
+    def __eq__(self, other):
+        if isinstance(other, Node):
+            if (self.inicio == other.inicio and \
+                self.fim == other.fim):
+                return True
+        return False
 
 # Retorna o tamanho do maior prefixo de string que é prefixo de sub
 def checkPrefixSubstring(string, sub):
