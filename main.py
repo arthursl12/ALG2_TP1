@@ -2,6 +2,9 @@ import numpy as np
 
 NOME_ARQ = 'sarscov2.fasta'
 
+def criaArvoreSufixos(string):
+    pass
+
 def arquivoString(nomeArq):
     with open(nomeArq,'r') as arquivo:
         next(arquivo)     # Ignorar cabeçalho
