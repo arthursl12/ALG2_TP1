@@ -1,5 +1,5 @@
 import pytest
-from trie import CompactTrie, Node
+from trie import CompactTrie, Node, checkPrefixSubstring
 
 # A árvore de sufixos deverá ser implementada através de uma Trie compacta
 
@@ -18,9 +18,12 @@ from trie import CompactTrie, Node
 # texto. Poderão ser introduzidas modificações na estrutura de dados para facilitar
 # a implementação dessa funcionalidade.
 class Test_Node:
+    def test_init_raiz(self):
+        node = Node()
+        assert node.inicio == None
+        assert node.fim == None
+
     def test_init(self):
-        with pytest.raises(TypeError):
-            node = Node()
         node = Node(0,7)
         assert node.inicio == 0
         assert node.fim == 7
@@ -51,27 +54,51 @@ class Test_Node:
         node2 = Node(45,45)
 
 
-class Test_CompactTrie:
-    @pytest.mark.run(order=1)
-    def test_init(self):
-        trie = CompactTrie()
+class Test_checkPrefix:
+    def test_no_match(self):
+        assert checkPrefixSubstring('','') == 0
+        assert checkPrefixSubstring('','as') == 0
+        assert checkPrefixSubstring('as','') == 0
     
-    @pytest.mark.run(order=2)
+    def test_symmetry(self):
+        assert checkPrefixSubstring('ab','cd') == checkPrefixSubstring('cd','ab')
+        assert checkPrefixSubstring('she','sells') == \
+                    checkPrefixSubstring('sells','she')
+        assert checkPrefixSubstring('sell','sells') == \
+                    checkPrefixSubstring('sells','sell')
+
+    def test_one_match(self):
+        assert checkPrefixSubstring('she','sells') == 1
+        assert checkPrefixSubstring('s','s') == 1
+        
+    def test_more_match_prefix(self):
+        assert checkPrefixSubstring('sell','sells') == 4
+    
+    def test_no_prefix_match(self):
+        assert checkPrefixSubstring('sell','mysells') == 0
+    
+
+class Test_CompactTrie:
+    @classmethod
+    def setup_class(cls):
+        cls.texto = 'she'
+
+    def test_init(self):
+        trie = CompactTrie(self.texto)
+    
     def test_vazia(self):
-        trie = CompactTrie()
+        trie = CompactTrie(self.texto)
         assert trie.isEmpty() == True
 
-    @pytest.mark.run(order=3)
     def test_insercao(self):
-        trie = CompactTrie()
+        trie = CompactTrie(self.texto)
         trie.insert('she')
         assert trie.isEmpty() == False
-    
-    @pytest.mark.run(order=4)
-    def test_remocao(self):
-        trie = CompactTrie()
+
+    def test_busca(self):
+        trie = CompactTrie(self.texto)
+        assert trie.find('A') == False
         trie.insert('she')
-        trie.remove('she')
-        assert self.trie.isEmpty() == True
+        assert trie.find('she') == True
 
 
