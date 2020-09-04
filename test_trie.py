@@ -29,13 +29,21 @@ class Test_Node:
         node1 = Node(0,7)
         node1.setInicio(2)
         assert node1.inicio == 2
-        assert node1.inicio == 7
+        assert node1.fim == 7
 
     def test_modificacao_fim(self):
         node2 = Node(0,7)
         node2.setFim(4)
         assert node2.inicio == 0
-        assert node2.inicio == 4
+        assert node2.fim == 4
+
+    def test_sets_invalidos(self):
+        node1 = Node(0,7)
+        node2 = Node(3,7)
+        with pytest.raises(Exception):
+            node1.setInicio(10)
+        with pytest.raises(Exception):
+            node2.setFim(1)
     
     def test_no_um_caractere(self):
         node = Node(0,0)
