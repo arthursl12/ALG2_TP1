@@ -34,8 +34,9 @@ class CompactTrie:
     def findNode(self, a, b):
         """
         Procura a substring texto[a,b] na Trie
-        Retorna último nó que representa a substring na Trie
-        Retorna None se a substring não for encontrada 
+        Retorna último nó que representa a substring na Trie (ou o nó que deve
+        ser dividido caso desejemos inseri-la) e também a própria string 
+        (ou a porção da substring casada, se não está na Trie)
         """
         nodeAtual = self.root
         string = self.texto[a:b+1]      #String de interesse
