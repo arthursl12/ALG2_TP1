@@ -31,26 +31,25 @@ class CompactTrie:
         return match >= 1 and \
                match - len(casPrevio) >= 1
 
-    def find(self, a, b):
+    def findNode(self, a, b):
         """
         Procura a substring texto[a,b] na Trie
         Retorna último nó que representa a substring na Trie
         Retorna None se a substring não for encontrada 
         """
-        if self.isEmpty():
-            return None
         nodeAtual = self.root
         string = self.texto[a:b+1]      #String de interesse
         casPrevio = ''                  #Padrão já casado nos nós acima
         it = iter(nodeAtual.children)
         child = next(it, None)
+        match = 0
         while child is not None:
             if (child.inicio == None and child.fim == None):
                 # Chegamos num nó "vazio", indicando uma palavra inserida que 
                 # termina ali
                 if (casPrevio == string):
                     nodeAtual = child
-                    return nodeAtual
+                    break
                 else:
                     child = next(it, None)
                     continue
@@ -65,11 +64,24 @@ class CompactTrie:
                 continue
             child = next(it, None)
         if match == len(string):
-            return nodeAtual
+            return nodeAtual,string
         else:
-            return None
-            
+            return nodeAtual,casParcial
 
+    def find(self, a, b):
+        """
+        Procura a substring texto[a,b] na Trie
+        Retorna último nó que representa a substring na Trie
+        Retorna None se a substring não for encontrada 
+        """
+        if self.isEmpty():
+            return None
+        string = self.texto[a:b+1]
+        nodeAtual,casParcial = self.findNode(a, b)
+        if casParcial == string:
+            return nodeAtual
+        else: 
+            return None
         
 
 
@@ -108,3 +120,5 @@ def checkPrefixSubstring(string, sub):
             return i
 
     return n
+
+    
