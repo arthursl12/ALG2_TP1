@@ -36,6 +36,11 @@ class Test_criaArvoreSufixos:
     def test_presenca(self):
         assert self.trie.find('A') != None
         assert self.trie.find(self.string) != None
+    def test_presenca_todos(self):
+        n = len(self.string)
+        for i in range(n):
+            sufixo = self.string[i:n]
+            assert self.trie.find(sufixo) != None, f"Não encontrado {sufixo}"
     def test_maior_prefixo_repetido(self):
         raise("TODO")
 
