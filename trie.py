@@ -50,7 +50,7 @@ class CompactTrie:
                 # termina ali
                 if (casPrevio == string):
                     nodeAtual = child
-                    break
+                    return nodeAtual
                 else:
                     child = next(it, None)
                     continue
@@ -64,7 +64,11 @@ class CompactTrie:
                 casPrevio = string[0:match]
                 continue
             child = next(it, None)
-        return nodeAtual
+        if match == len(string):
+            return nodeAtual
+        else:
+            return None
+            
 
         
 

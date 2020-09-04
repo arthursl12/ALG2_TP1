@@ -39,13 +39,13 @@ class Test_checkPrefix:
         assert checkPrefixSubstring('sell','mysells') == 0
     
 # A árvore de sufixos deverá ser implementada através de uma Trie compacta
+# A árvore pode ser construída com um algoritmo quadrático, inserindo os sufixos
+# um a um. 
 class Test_CompactTrie:
     @classmethod
     def setup_class(cls):
         cls.texto = 'she'
 
-    # A árvore pode ser construída com um algoritmo quadrático, inserindo os sufixos
-    # um a um. 
     def test_init(self):
         trie = CompactTrie(self.texto)
     
@@ -53,7 +53,7 @@ class Test_CompactTrie:
         trie = CompactTrie(self.texto)
         assert trie.isEmpty() == True
 
-    def test_insercao(self):
+    def test_insercao_simples(self):
         trie = CompactTrie(self.texto)
         trie.insert(0,2)
         assert trie.isEmpty() == False
@@ -65,7 +65,6 @@ class Test_CompactTrie:
         node = Node(0,2)
         assert trie.find(0,2) == node
     
-
 class Test_BuscaCompactTrie:
     @classmethod
     def setup_class(cls):
@@ -109,3 +108,29 @@ class Test_BuscaCompactTrie:
         assert self.trie.find(0,2) == node
         node = Node(6,8)
         assert self.trie.find(4,8) == node
+        node = Node(12,12)
+        assert self.trie.find(10,12) == node
+        assert self.trie.find(28,30) == node
+    
+    def test_busca_vazia(self):
+        assert self.trie.find(13,13) == None
+        assert self.trie.find(0,3) == None
+        assert self.trie.find(14,20) == None
+        assert self.trie.find(24,27) == None
+        assert self.trie.find(4,9) == None
+
+class Test_InsercaoCompactTrie:
+    @classmethod
+    def setup_class(cls):
+        cls.texto = 'she_sells_sea_shells_by_the_sea'
+    
+    def test_insercao_complexa(self):
+        trie = CompactTrie(self.texto)
+        trie.insert(0,2)
+        trie.insert(4,8)
+        trie.insert(10,12)
+        trie.insert(14,19)
+        trie.insert(21,22)
+        trie.insert(24,26)
+        trie.insert(28,30)
+
