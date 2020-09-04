@@ -1,9 +1,10 @@
 import numpy as np
+from trie import CompactTrie
 
 NOME_ARQ = 'sarscov2.fasta'
 
 def criaArvoreSufixos(string):
-    pass
+    return CompactTrie()
 
 def arquivoString(nomeArq):
     with open(nomeArq,'r') as arquivo:

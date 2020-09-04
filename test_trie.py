@@ -1,5 +1,5 @@
 import pytest
-from trie import CompactTrie, Node, EmptyNodeException
+from trie import CompactTrie, Node
 
 # A árvore de sufixos deverá ser implementada através de uma Trie compacta
 
@@ -19,11 +19,29 @@ from trie import CompactTrie, Node, EmptyNodeException
 # a implementação dessa funcionalidade.
 class Test_Node:
     def test_init(self):
-        with pytest.raises(EmptyNodeException):
+        with pytest.raises(TypeError):
             node = Node()
         node = Node(0,7)
-    def test_modificacao(self):
-        raise("TODO")
+        assert node.inicio == 0
+        assert node.fim == 7
+
+    def test_modificacao_inicio(self):
+        node1 = Node(0,7)
+        node1.setInicio(2)
+        assert node1.inicio == 2
+        assert node1.inicio == 7
+
+    def test_modificacao_fim(self):
+        node2 = Node(0,7)
+        node2.setFim(4)
+        assert node2.inicio == 0
+        assert node2.inicio == 4
+    
+    def test_no_um_caractere(self):
+        node = Node(0,0)
+        node1 = Node(1,1)
+        node2 = Node(45,45)
+
 
 class Test_CompactTrie:
     @pytest.mark.run(order=1)

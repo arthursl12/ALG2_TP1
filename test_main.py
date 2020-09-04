@@ -32,7 +32,7 @@ class Test_criaArvoreSufixos:
     def test_tipo_retorno(self):
         assert type(self.trie) == CompactTrie
     def test_nao_vazia(self):
-        assert self.trie.isEmpty == False
+        assert self.trie.isEmpty() == False
     def test_presenca(self):
         assert self.trie.find('A') != None
         assert self.trie.find(self.string) != None
