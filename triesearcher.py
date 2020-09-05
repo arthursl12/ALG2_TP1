@@ -63,6 +63,7 @@ class TrieSearcher:
                 # está presente, podemos parar a busca. Nota: se quisermos 
                 # inseri-la, temos que dividir o nó atual. 
                 self.child = None
+                self.casParcial = self.casPrevio
         else:
             self.casParcial = self.casPrevio
             self.child = next(self.it, None)

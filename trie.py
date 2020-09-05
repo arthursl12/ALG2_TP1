@@ -15,6 +15,7 @@ class CompactTrie:
         if self.isEmpty():
             newNode = Node(inicio, fim)
             self.root.children.append(newNode)
+            print('caso0')
         else:
             string = self.texto[inicio:fim+1]
             searcher = TrieSearcher(self.texto, self, inicio, fim)
@@ -23,14 +24,18 @@ class CompactTrie:
                 # String não casa parcialmente com nada na Trie
                 newNode = Node(inicio, fim)
                 self.root.children.append(newNode)
+                print('caso1')
             elif casParcial == string:
                 # String já está na Trie
+                print('caso2')
                 pass
-            elif casParcial == string:
+            elif casParcial == string and checkPrefixSubstring(casParcial,string):
                 # String casa totalmente com o nó atual
+                print('caso3')
                 pass
             else:
                 # String casa parcialmente com o node atual
+                print('caso4')
                 pass
 
     def find(self, a, b):
@@ -71,35 +76,41 @@ class Node:
                 return True
         return False
 
-class Trie:
-    def __init__(self):
-        self.texto = 'she_sells_sea_shells_by_the_sea'
-        self.trie = None
-        self.trie = CompactTrie(self.texto)
+# class Trie:
+#     def __init__(self):
+#         self.texto = 'she_sells_sea_shells_by_the_sea'
+#         self.trie = None
+#         self.trie = CompactTrie(self.texto)
 
-        n1 = Node(17,19)
-        n2 = Node()
-        n3 = Node(1,2)
-        n3.children.append(n1)
-        n3.children.append(n2)
+#         n1 = Node(17,19)
+#         n2 = Node()
+#         n3 = Node(1,2)
+#         n3.children.append(n1)
+#         n3.children.append(n2)
 
-        n4 = Node(6,8)
-        n5 = Node(12,12)
-        n6 = Node(5,5)
-        n6.children.append(n4)
-        n6.children.append(n5)
+#         n4 = Node(6,8)
+#         n5 = Node(12,12)
+#         n6 = Node(5,5)
+#         n6.children.append(n4)
+#         n6.children.append(n5)
         
-        n7 = Node(0,0)
-        n7.children.append(n3)
-        n7.children.append(n6)
+#         n7 = Node(0,0)
+#         n7.children.append(n3)
+#         n7.children.append(n6)
 
-        n8 = Node(24,26)
-        n9 = Node(21,22)
+#         n8 = Node(24,26)
+#         n9 = Node(21,22)
 
-        self.trie.root.children.append(n8)
-        self.trie.root.children.append(n9)
-        self.trie.root.children.append(n7)
+#         self.trie.root.children.append(n8)
+#         self.trie.root.children.append(n9)
+#         self.trie.root.children.append(n7)
 
 if __name__ == "__main__":
-    trie = Trie()
-    trie.trie.findNode(0,1)
+    trie = CompactTrie('she_sells_sea_shells_by_the_sea')
+    trie.insert(0,2)
+    trie.insert(4,8)
+    trie.insert(10,12)
+    trie.insert(14,19)
+    trie.insert(21,22)
+    trie.insert(24,26)
+    trie.insert(28,30)

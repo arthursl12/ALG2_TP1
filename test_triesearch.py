@@ -1,6 +1,7 @@
 import pytest
 from trie import Node
 from test_trie import montaTrie
+from trie import CompactTrie
 from triesearcher import TrieSearcher
 
 class Test_TrieSearch:
@@ -59,3 +60,16 @@ class Test_TrieSearch:
             word = triple[2]
             search = TrieSearcher(self.texto, self.trie, interval[0], interval[1])
             assert search.findNode() == (node, word), f"triple = {triple}"
+
+class Test_SimpleTrieSearch:
+    @classmethod
+    def setup_class(cls):
+        cls.texto = 'she_sells_sea_shells_by_the_sea'
+        cls.trie = CompactTrie(cls.texto)
+        cls.trie.insert(0,2)
+    def test_simples(self):
+        search = TrieSearcher(self.texto, self.trie, 4, 8)
+        node = Node(0,2)
+        assert search.findNode() == (node, 's')
+    
+        
