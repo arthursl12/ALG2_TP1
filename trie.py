@@ -46,7 +46,6 @@ class CompactTrie:
         casPrevio = ''                  #Padrão já casado nos nós acima
         labelNode = ''                  #Substring representada pelo node atual
         casParcial = ''                 #Casamento com o label do nó atual (checar)
-        labelPai = ''                   #Label de todos os nós superiores do atual
         it = iter(nodeAtual.children)
         child = next(it, None)
         match = 0
@@ -54,13 +53,12 @@ class CompactTrie:
             if (child.inicio == None and child.fim == None):
                 # Chegamos num nó "vazio", indicando uma palavra inserida que 
                 # termina ali
-                if (labelPai == string):
+                if (casPrevio == string):
                     nodeAtual = child
                     break
                 else:
                     child = next(it, None)
                     continue
-            labelPai = casParcial
             labelNode = self.texto[child.inicio:child.fim+1]
             casParcial = casPrevio + labelNode
             match = checkPrefixSubstring(string, casParcial)
@@ -69,6 +67,8 @@ class CompactTrie:
                 it = iter(nodeAtual.children)
                 child = next(it, None)
                 casPrevio = string[0:match]
+                if match < len(casParcial):
+                    return nodeAtual, casPrevio
                 continue
             casParcial = casPrevio
             child = next(it, None)
