@@ -13,8 +13,10 @@ class CompactTrie:
             newNode = Node(inicio, fim)
             self.root.children.append(newNode)
         else:
-            lastNode = self.find(inicio, fim)
-            if lastNode is None:
+            string = self.texto[inicio:fim+1]
+            lastNode, casParcial = self.findNode(inicio, fim)
+            if casParcial == '':
+                # String não casa parcialmente com nada na Trie
                 newNode = Node(inicio, fim)
                 self.root.children.append(newNode)
             
@@ -31,6 +33,7 @@ class CompactTrie:
         return match >= 1 and \
                match - len(casPrevio) >= 1
 
+
     def findNode(self, a, b):
         """
         Procura a substring texto[a,b] na Trie
@@ -41,6 +44,9 @@ class CompactTrie:
         nodeAtual = self.root
         string = self.texto[a:b+1]      #String de interesse
         casPrevio = ''                  #Padrão já casado nos nós acima
+        labelNode = ''                  #Substring representada pelo node atual
+        casParcial = ''                 #Casamento com o label do nó atual (checar)
+        labelPai = ''                   #Label de todos os nós superiores do atual
         it = iter(nodeAtual.children)
         child = next(it, None)
         match = 0
@@ -48,12 +54,13 @@ class CompactTrie:
             if (child.inicio == None and child.fim == None):
                 # Chegamos num nó "vazio", indicando uma palavra inserida que 
                 # termina ali
-                if (casPrevio == string):
+                if (labelPai == string):
                     nodeAtual = child
                     break
                 else:
                     child = next(it, None)
                     continue
+            labelPai = casParcial
             labelNode = self.texto[child.inicio:child.fim+1]
             casParcial = casPrevio + labelNode
             match = checkPrefixSubstring(string, casParcial)
@@ -63,6 +70,7 @@ class CompactTrie:
                 child = next(it, None)
                 casPrevio = string[0:match]
                 continue
+            casParcial = casPrevio
             child = next(it, None)
         if match == len(string):
             return nodeAtual,string
@@ -122,4 +130,35 @@ def checkPrefixSubstring(string, sub):
 
     return n
 
-    
+class Trie:
+    def __init__(self):
+        self.texto = 'she_sells_sea_shells_by_the_sea'
+        self.trie = None
+        self.trie = CompactTrie(self.texto)
+
+        n1 = Node(17,19)
+        n2 = Node()
+        n3 = Node(1,2)
+        n3.children.append(n1)
+        n3.children.append(n2)
+
+        n4 = Node(6,8)
+        n5 = Node(12,12)
+        n6 = Node(5,5)
+        n6.children.append(n4)
+        n6.children.append(n5)
+        
+        n7 = Node(0,0)
+        n7.children.append(n3)
+        n7.children.append(n6)
+
+        n8 = Node(24,26)
+        n9 = Node(21,22)
+
+        self.trie.root.children.append(n8)
+        self.trie.root.children.append(n9)
+        self.trie.root.children.append(n7)
+
+if __name__ == "__main__":
+    trie = Trie()
+    trie.trie.findNode(0,1)

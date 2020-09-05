@@ -118,6 +118,50 @@ class Test_ComplexaCompactTrie:
         assert self.trie.find(14,20) == None
         assert self.trie.find(24,27) == None
         assert self.trie.find(4,9) == None
+        assert self.trie.find(1,2) == None
+    
+    def test_findNode_found(self):
+        node = Node(21,22)
+        assert self.trie.findNode(21,22) == (node,'by')
+        node = Node(24,26)
+        assert self.trie.findNode(24,26) == (node,'the')
+        node = Node(17,19)
+        assert self.trie.findNode(14,19) == (node,'shells')
+        node = Node()
+        assert self.trie.findNode(0,2) == (node,'she')
+        node = Node(6,8)
+        assert self.trie.findNode(4,8) == (node,'sells')
+        node = Node(12,12)
+        assert self.trie.findNode(10,12) == (node,'sea')
+        assert self.trie.findNode(28,30) == (node,'sea')
+
+    def test_findNode_not_found(self):
+        raiz = Node() 
+        assert self.trie.findNode(13,13) == (raiz,'')
+        assert self.trie.findNode(1,2) == (raiz,'')
+        node = Node(1,2)
+        assert self.trie.findNode(0,3) == (node,'she')
+        node = Node(17,19)
+        assert self.trie.findNode(14,20) == (node,'shells')
+        node = Node(24,26)
+        assert self.trie.findNode(24,27) == (node,'the')
+        node = Node(6,8)
+        assert self.trie.findNode(4,9) == (node,'sells')
+    
+    def test_findNode_partial_found(self):
+        node = Node(17,19)
+        assert self.trie.findNode(14,17) == (node,'shel')
+        node = Node(6,8)
+        assert self.trie.findNode(4,6) == (node,'sel')
+        assert self.trie.findNode(4,7) == (node,'sell')
+        node = Node(1,2)
+        assert self.trie.findNode(0,1) == (node,'sh')
+        assert self.trie.findNode(14,15) == (node,'sh')
+        node = Node(5,5)
+        assert self.trie.findNode(4,5) == (node,'se')
+        assert self.trie.findNode(10,11) == (node,'se')
+        assert self.trie.findNode(28,29) == (node,'se')
+
     
     
     
