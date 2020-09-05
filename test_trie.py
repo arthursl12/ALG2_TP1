@@ -65,7 +65,7 @@ class Test_CompactTrie:
         node = Node(0,2)
         assert trie.find(0,2) == node
     
-class Test_BuscaCompactTrie:
+class Test_ComplexaCompactTrie:
     @classmethod
     def setup_class(cls):
         cls.texto = 'she_sells_sea_shells_by_the_sea'
@@ -118,19 +118,52 @@ class Test_BuscaCompactTrie:
         assert self.trie.find(14,20) == None
         assert self.trie.find(24,27) == None
         assert self.trie.find(4,9) == None
+    
+    
+    
+
+
+
+
 
 class Test_InsercaoCompactTrie:
     @classmethod
     def setup_class(cls):
         cls.texto = 'she_sells_sea_shells_by_the_sea'
     
+    def setup_method(self, method):
+        self.trie = CompactTrie(self.texto)
+        self.trie.insert(0,2)
+        self.trie.insert(4,8)
+        self.trie.insert(10,12)
+        self.trie.insert(14,19)
+        self.trie.insert(21,22)
+        self.trie.insert(24,26)
+        self.trie.insert(28,30)
+
     def test_insercao_complexa(self):
-        trie = CompactTrie(self.texto)
-        trie.insert(0,2)
-        trie.insert(4,8)
-        trie.insert(10,12)
-        trie.insert(14,19)
-        trie.insert(21,22)
-        trie.insert(24,26)
-        trie.insert(28,30)
+        node = Node(21,22)
+        assert self.trie.find(21,22) == node
+        node = Node(24,26)
+        assert self.trie.find(24,26) == node
+        node = Node(17,19)
+        assert self.trie.find(14,19) == node
+        node = Node()
+        assert self.trie.find(0,2) == node
+        node = Node(6,8)
+        assert self.trie.find(4,8) == node
+        node = Node(12,12)
+        assert self.trie.find(10,12) == node
+        assert self.trie.find(28,30) == node
+
+    def test_insercao_complexa_nodes_falsos(self):
+        assert self.trie.find(13,13) == None
+        assert self.trie.find(0,3) == None
+        assert self.trie.find(14,20) == None
+        assert self.trie.find(24,27) == None
+        assert self.trie.find(4,9) == None
+    
+    
+
+
 
