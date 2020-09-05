@@ -1,3 +1,5 @@
+from triesearcher import TrieSearcher
+
 class CompactTrie:
     def __init__(self, texto):
         self.root = Node()
@@ -13,69 +15,14 @@ class CompactTrie:
             newNode = Node(inicio, fim)
             self.root.children.append(newNode)
         else:
-            string = self.texto[inicio:fim+1]
-            lastNode, casParcial = self.findNode(inicio, fim)
-            if casParcial == '':
-                # String não casa parcialmente com nada na Trie
-                newNode = Node(inicio, fim)
-                self.root.children.append(newNode)
+            # string = self.texto[inicio:fim+1]
+            # lastNode, casParcial = self.findNode(inicio, fim)
+            # if casParcial == '':
+            #     # String não casa parcialmente com nada na Trie
+            #     newNode = Node(inicio, fim)
+            #     self.root.children.append(newNode)
             
             raise("TODO")
-
-    def __casamentoValido(self, match, casPrevio):
-        """
-        Devem ser verdadeiros:
-        (1) se a string desejada tem algum prefixo em comum com o 
-        casamento dos nós acima juntamente com a label do nó atual
-        (2) se realmente casamos um prefixo maior (senão apenas casamos o que
-        já havíamos casado)
-        """
-        return match >= 1 and \
-               match - len(casPrevio) >= 1
-
-
-    def findNode(self, a, b):
-        """
-        Procura a substring texto[a,b] na Trie
-        Retorna último nó que representa a substring na Trie (ou o nó que deve
-        ser dividido caso desejemos inseri-la) e também a própria string 
-        (ou a porção da substring casada, se não está na Trie)
-        """
-        nodeAtual = self.root
-        string = self.texto[a:b+1]      #String de interesse
-        casPrevio = ''                  #Padrão já casado nos nós acima
-        labelNode = ''                  #Substring representada pelo node atual
-        casParcial = ''                 #Casamento com o label do nó atual (checar)
-        it = iter(nodeAtual.children)
-        child = next(it, None)
-        match = 0
-        while child is not None:
-            if (child.inicio == None and child.fim == None):
-                # Chegamos num nó "vazio", indicando uma palavra inserida que 
-                # termina ali
-                if (casPrevio == string):
-                    nodeAtual = child
-                    break
-                else:
-                    child = next(it, None)
-                    continue
-            labelNode = self.texto[child.inicio:child.fim+1]
-            casParcial = casPrevio + labelNode
-            match = checkPrefixSubstring(string, casParcial)
-            if self.__casamentoValido(match, casPrevio):
-                nodeAtual = child
-                it = iter(nodeAtual.children)
-                child = next(it, None)
-                casPrevio = string[0:match]
-                if match < len(casParcial):
-                    return nodeAtual, casPrevio
-                continue
-            casParcial = casPrevio
-            child = next(it, None)
-        if match == len(string):
-            return nodeAtual,string
-        else:
-            return nodeAtual,casParcial
 
     def find(self, a, b):
         """
@@ -86,14 +33,13 @@ class CompactTrie:
         if self.isEmpty():
             return None
         string = self.texto[a:b+1]
-        nodeAtual,casParcial = self.findNode(a, b)
+        finder = TrieSearcher(self.texto, self, a, b)
+        nodeAtual,casParcial = finder.findNode()
         if casParcial == string:
             return nodeAtual
         else: 
             return None
         
-
-
 class Node:
     def __init__(self, inicio=None, fim=None):
         self.inicio = inicio
@@ -116,19 +62,6 @@ class Node:
                 self.fim == other.fim):
                 return True
         return False
-
-# Retorna o tamanho do maior prefixo de string que é prefixo de sub
-def checkPrefixSubstring(string, sub):
-    n = min([len(string),len(sub)])
-
-    # Alguma string vazia
-    if n == 0: 
-        return 0
-    for i in range(n):
-        if string[i] != sub[i]:
-            return i
-
-    return n
 
 class Trie:
     def __init__(self):
