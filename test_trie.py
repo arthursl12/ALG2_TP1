@@ -43,21 +43,22 @@ class Test_ComplexaCompactTrie:
     @classmethod
     def setup_class(cls):
         cls.texto = 'she_sells_sea_shells_by_the_sea'
+        cls.trie = montaTrie()
 
     def test_busca_complexa(self):
-        node = Node(21,22)
-        assert self.trie.find(21,22) == node
-        node = Node(24,26)
-        assert self.trie.find(24,26) == node
-        node = Node(17,19)
-        assert self.trie.find(14,19) == node
-        node = Node()
-        assert self.trie.find(0,2) == node
-        node = Node(6,8)
-        assert self.trie.find(4,8) == node
-        node = Node(12,12)
-        assert self.trie.find(10,12) == node
-        assert self.trie.find(28,30) == node
+        assertList = [
+            (Node(21,22), (21,22)),
+            (Node(24,26), (24,26)),
+            (Node(17,19), (14,19)),
+            (Node(), (0,2)),
+            (Node(6,8), (4,8)),
+            (Node(12,12), (10,12)),
+            (Node(12,12), (28,30))
+        ]
+        for pair in assertList:
+            node = pair[0]
+            interval = pair[1]
+            assert self.trie.find(interval[0], interval[1]) == node
     
     def test_busca_vazia(self):
         assert self.trie.find(13,13) == None
