@@ -1,3 +1,5 @@
+from helper import checkPrefixSubstring
+
 class TrieSearcher:
     """
     Procura a substring texto[a,b] na Trie
@@ -18,19 +20,6 @@ class TrieSearcher:
         self.it = iter(self.nodeAtual.children)
         self.child = next(self.it, None)
         self.match = 0                    #Qtd de caracteres casados
-
-    def __checkPrefixSubstring(self, string, sub):
-        """
-        Retorna o tamanho do maior prefixo de string que é prefixo de sub
-        """
-        n = min([len(string),len(sub)])
-        if n == 0: 
-            # Alguma string vazia
-            return 0
-        for i in range(n):
-            if string[i] != sub[i]:
-                return i
-        return n
 
     def __casamentoValido(self):
         """
@@ -63,7 +52,7 @@ class TrieSearcher:
         """
         labelNode = self.texto[self.child.inicio:self.child.fim+1]
         self.casParcial = self.casPrevio + labelNode
-        self.match = self.__checkPrefixSubstring(self.string, self.casParcial)
+        self.match = checkPrefixSubstring(self.string, self.casParcial)
         if self.__casamentoValido():
             self.nodeAtual = self.child
             self.it = iter(self.nodeAtual.children)

@@ -1,4 +1,5 @@
 from triesearcher import TrieSearcher
+from helper import checkPrefixSubstring
 
 class CompactTrie:
     def __init__(self, texto):
@@ -15,14 +16,22 @@ class CompactTrie:
             newNode = Node(inicio, fim)
             self.root.children.append(newNode)
         else:
-            # string = self.texto[inicio:fim+1]
-            # lastNode, casParcial = self.findNode(inicio, fim)
-            # if casParcial == '':
-            #     # String não casa parcialmente com nada na Trie
-            #     newNode = Node(inicio, fim)
-            #     self.root.children.append(newNode)
-            
-            raise("TODO")
+            string = self.texto[inicio:fim+1]
+            searcher = TrieSearcher(self.texto, self, inicio, fim)
+            nodeAtual,casParcial = searcher.findNode()
+            if casParcial == '':
+                # String não casa parcialmente com nada na Trie
+                newNode = Node(inicio, fim)
+                self.root.children.append(newNode)
+            elif casParcial == string:
+                # String já está na Trie
+                pass
+            elif casParcial == string:
+                # String casa totalmente com o nó atual
+                pass
+            else:
+                # String casa parcialmente com o node atual
+                pass
 
     def find(self, a, b):
         """
@@ -33,8 +42,7 @@ class CompactTrie:
         if self.isEmpty():
             return None
         string = self.texto[a:b+1]
-        finder = TrieSearcher(self.texto, self, a, b)
-        nodeAtual,casParcial = finder.findNode()
+        nodeAtual,casParcial = TrieSearcher(self.texto, self, a, b).findNode()
         if casParcial == string:
             return nodeAtual
         else: 
