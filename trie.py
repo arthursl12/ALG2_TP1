@@ -20,6 +20,8 @@ class CompactTrie:
             string = self.texto[inicio:fim+1]
             searcher = TrieSearcher(self.texto, self, inicio, fim)
             nodeAtual,casParcial = searcher.findNode()
+            labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
+            match = checkPrefixSubstring(casParcial,string)
             if casParcial == '':
                 # String não casa parcialmente com nada na Trie
                 newNode = Node(inicio, fim)
@@ -29,10 +31,11 @@ class CompactTrie:
                 # String já está na Trie
                 print('caso2')
                 pass
-            elif casParcial == string and checkPrefixSubstring(casParcial,string):
+            elif match == len(casParcial):
                 # String casa totalmente com o nó atual
                 print('caso3')
-                pass
+                newNode = Node(inicio+match, fim)
+                nodeAtual.children.append(newNode)
             else:
                 # String casa parcialmente com o node atual
                 print('caso4')
@@ -108,6 +111,7 @@ class Node:
 if __name__ == "__main__":
     trie = CompactTrie('she_sells_sea_shells_by_the_sea')
     trie.insert(0,2)
+    trie.insert(0,3)
     trie.insert(4,8)
     trie.insert(10,12)
     trie.insert(14,19)
