@@ -12,10 +12,11 @@ class TrieSearcher:
         self.trie = trie
 
         self.string = self.texto[a:b+1]   #String de interesse
-        self.casPrevio = ''               #Padrão já casado nos nós acima
+        self.casParent = ''               #Padrão já casado nos nós acima
+        self.casNode = ''                 #Padrão casado com o nó atual (esperado)
         self.labelNode = ''               #Substring representada pelo node atual
-        self.casParcial = ''              #Casamento com o label do nó atual
-        self.nodeAtual = self.trie.root   #Node inicial da busca
+        self.casParcial = ''              #Padrão casado com o nó atual (de fato)
+        self.nodeAtual = self.trie.root   #Node inicial da busca (raiz)
 
         self.it = iter(self.nodeAtual.children)
         self.child = next(self.it, None)
@@ -27,10 +28,10 @@ class TrieSearcher:
         (1) se a string desejada tem algum prefixo em comum com o 
         casamento dos nós acima juntamente com a label do nó atual
         (2) se realmente casamos um prefixo maior (senão apenas casamos o que
-        já havíamos casado)
+        já havíamos casado nos nós acima)
         """
         return self.match >= 1 and \
-               self.match - len(self.casPrevio) >= 1
+               self.match - len(self.casParent) >= 1
 
     def __nodeFimPalavra(self):
         """
@@ -39,7 +40,7 @@ class TrieSearcher:
         Verificamos se esse nó vazio representa a string de interesse. Se sim
         podemos terminar a busca. Se não, seguimos para o próximo filho.
         """
-        if (self.casPrevio == self.string):
+        if (self.casParent == self.string):
             self.nodeAtual = self.child
             self.child = None
         else:
@@ -50,22 +51,24 @@ class TrieSearcher:
         Faz uma busca pela string nos filhos do nó atual e desce um nível para
         algum filho, se o casamento for com sucesso
         """
-        labelNode = self.texto[self.child.inicio:self.child.fim+1]
-        self.casParcial = self.casPrevio + labelNode
-        self.match = checkPrefixSubstring(self.string, self.casParcial)
+        self.labelNode = self.texto[self.child.inicio:self.child.fim+1]
+        self.casNode = self.casParent + self.labelNode
+        self.match = checkPrefixSubstring(self.string, self.casNode)
         if self.__casamentoValido():
             self.nodeAtual = self.child
             self.it = iter(self.nodeAtual.children)
             self.child = next(self.it, None)
-            self.casPrevio = self.string[0:self.match]
-            if self.match < len(self.casParcial):
+            self.casParent = self.casNode
+            self.casParcial = self.string[0:self.match]
+
+            if len(self.casParcial) < len(self.casNode):
                 # O casamento não foi com o label do nó inteiro, a string não
                 # está presente, podemos parar a busca. Nota: se quisermos 
                 # inseri-la, temos que dividir o nó atual. 
                 self.child = None
-                self.casParcial = self.casPrevio
+                self.casParcial = self.string[0:self.match]
+                self.casParent = self.casNode
         else:
-            self.casParcial = self.casPrevio
             self.child = next(self.it, None)
     
     def findNode(self):
@@ -78,7 +81,9 @@ class TrieSearcher:
             else:
                 self.__searchChildren()
         
-        if self.match == len(self.string):
-            return self.nodeAtual,self.string
+        if self.match == len(self.string) and self.casParcial == self.casNode:
+            return self.nodeAtual, self.string, self.casParcial
+        elif self.match == 0:
+            return self.nodeAtual, self.casParcial, self.casParcial
         else:
-            return self.nodeAtual,self.casParcial
+            return self.nodeAtual, self.casParcial, self.casParent
