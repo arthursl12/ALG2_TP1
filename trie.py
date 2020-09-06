@@ -15,7 +15,7 @@ class CompactTrie:
     def insert(self, inicio, fim):
         if self.isEmpty():
             newNode = Node(inicio, fim)
-            self.root.children.append(newNode)
+            self.root.addChild(newNode)
             print('caso0')
         else:
             string = self.texto[inicio:fim+1]
@@ -25,39 +25,47 @@ class CompactTrie:
             if casParcial == '':
                 # String não casa parcialmente com nada na Trie
                 newNode = Node(inicio, fim)
-                self.root.children.append(newNode)
+                self.root.addChild(newNode)
                 print('caso1')
             elif casParcial == string:
                 # String já está na Trie
                 print('caso2')
                 pass
-            elif match == len(casParcial):
+            elif casParcial == casNode:
                 # String casa totalmente com o nó atual
                 print('caso3')
+                #Filho1: marcador de fim de palavra
+                newNodeSon = Node()
+                nodeAtual.addChild(newNodeSon)
+
+                #Filho2: palavra nova que engloba uma que já existe na Trie
                 newNode = Node(inicio+match, fim)
-                nodeAtual.children.append(newNode)
+                nodeAtual.addChild(newNode)
             else:
+                print('caso4')
                 # String casa parcialmente com o node atual
                 #Divide o nó atual
-                newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+match)
-                nodeAtual.parent = grandNode
+                labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
+                # n = checkPrefixSubstring(casNode,labelNode)
+                # labelParent = casNode[0:n+1]
+                matchNormalizado = match - (len(casNode) - len(labelNode))
+                newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
+                grandNode = nodeAtual.parent
                 grandNode.children.remove(nodeAtual)
                 newNodeParent.parent = nodeAtual.parent
 
                 #Filho2: label que sobrou do pai
-                newNodeSon = Node(nodeAtual.inicio+match+1,nodeAtual.fim)
+                newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
                 newNodeSon.children = nodeAtual.children
-                newNodeSon.parent = newNodeParent
+                newNodeParent.addChild(newNodeSon)
 
                 #Filho1: novo (fim de palavra)
-                newNode = Node()
+                newNode = Node(inicio+match, fim)
                 newNode.parent = newNodeParent
-                newNodeParent.children.append(newNode)
+                newNodeParent.addChild(newNode)
 
                 #Arruma o parent do newNodeParent
-                grandNode.children.append(newNodeParent)
-                print('caso4')
-                pass
+                grandNode.addChild(newNodeParent)
 
     def find(self, a, b):
         """
@@ -107,27 +115,33 @@ class Trie:
 
 if __name__ == "__main__":
     trie = CompactTrie('she_sells_sea_shells_by_the_sea')
-    n1 = Node(17,19)
-    n2 = Node()
-    n3 = Node(1,2)
-    n3.children.append(n1)
-    n3.children.append(n2)
+    # n1 = Node(17,19)
+    # n2 = Node()
+    # n3 = Node(1,2)
+    # n3.children.append(n1)
+    # n3.children.append(n2)
 
-    n4 = Node(6,8)
-    n5 = Node(12,12)
-    n6 = Node(5,5)
-    n6.children.append(n4)
-    n6.children.append(n5)
+    # n4 = Node(6,8)
+    # n5 = Node(12,12)
+    # n6 = Node(5,5)
+    # n6.children.append(n4)
+    # n6.children.append(n5)
     
-    n7 = Node(0,0)
-    n7.children.append(n3)
-    n7.children.append(n6)
+    # n7 = Node(0,0)
+    # n7.children.append(n3)
+    # n7.children.append(n6)
 
-    n8 = Node(24,26)
-    n9 = Node(21,22)
+    # n8 = Node(24,26)
+    # n9 = Node(21,22)
 
-    trie.root.children.append(n8)
-    trie.root.children.append(n9)
-    trie.root.children.append(n7)
+    # trie.root.children.append(n8)
+    # trie.root.children.append(n9)
+    # trie.root.children.append(n7)
     # trie = CompactTrie('she_sells_sea_shells_by_the_sea')
-    trie.find(4,5)
+    # trie.find(4,5)
+    trie.insert(0,2)
+    trie.insert(4,8)
+    trie.insert(10,12)
+    trie.insert(14,19)
+    assert True
+

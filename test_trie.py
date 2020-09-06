@@ -106,7 +106,7 @@ class Test_CompactTrieInsercaoCompleta:
         assert self.trie.find(24,27) == None
         assert self.trie.find(4,9) == None
 
-class Test_CompactTrieInsert:
+class Test_CompactTrieInsertCase1:
     @classmethod
     def setup_class(cls):
         cls.trie = CompactTrie('she_sells_sea_shells_by_the_sea')
@@ -126,8 +126,39 @@ class Test_CompactTrieInsert:
         node1 = Node(3,3)
         assert len(self.trie.root.children) == 1
         assert self.trie.root.children[0] == node
-        assert self.trie.root.children[0].children[0] == node1
-    
+        assert len(self.trie.root.children[0].children) == 2
+        assert self.trie.find(0,3) == node1
+        assert self.trie.find(0,2) == Node()
+
+class Test_CompactTrieInsertCase2:
+    @classmethod
+    def setup_class(cls):
+        cls.trie = CompactTrie('she_sells_sea_shells_by_the_sea')
+    def test_case01(self):
+        assert len(self.trie.root.children) == 0
+    def test_case02(self):
+        self.trie.insert(0,2)
+        self.trie.insert(4,8)
+        assert len(self.trie.root.children) == 1
+        node0 = Node(0,0)
+        assert self.trie.root.children[0] == node0
+        assert len(self.trie.root.children[0].children) == 2
+        assert self.trie.find(0,2) == Node(1,2)
+        assert self.trie.find(4,8) == Node(5,8)
+
+
+    def test_case03(self):
+        self.trie.insert(0,2)
+        self.trie.insert(4,8)
+        self.trie.insert(10,12)
+        assert len(self.trie.root.children) == 1
+        node0 = Node(0,0)
+        assert self.trie.root.children[0] == node0
+        assert len(self.trie.root.children[0].children) == 2
+        assert self.trie.find(0,2) == Node(1,2)
+        assert self.trie.find(4,8) == Node(6,8)
+        assert self.trie.find(10,12) == Node(12,12)
+
 def montaTrie():
     texto = 'she_sells_sea_shells_by_the_sea'
     trie = CompactTrie(texto)
