@@ -4,7 +4,7 @@ from trie import CompactTrie
 NOME_ARQ = 'sarscov2.fasta'
 
 def criaArvoreSufixos(string):
-    return CompactTrie()
+    return CompactTrie(string)
 
 def arquivoString(nomeArq):
     with open(nomeArq,'r') as arquivo:

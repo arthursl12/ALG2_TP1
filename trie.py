@@ -1,3 +1,4 @@
+from node import Node
 from triesearcher import TrieSearcher
 from helper import checkPrefixSubstring
 
@@ -56,28 +57,7 @@ class CompactTrie:
         else: 
             return None
         
-class Node:
-    def __init__(self, inicio=None, fim=None):
-        self.inicio = inicio
-        self.fim = fim
-        self.children = []
 
-    def setInicio(self, novoInicio):
-        if novoInicio > self.fim:
-            raise Exception
-        self.inicio = novoInicio
-
-    def setFim(self, novoFim):
-        if novoFim < self.inicio:
-            raise Exception
-        self.fim = novoFim
-    
-    def __eq__(self, other):
-        if isinstance(other, Node):
-            if (self.inicio == other.inicio and \
-                self.fim == other.fim):
-                return True
-        return False
 
 # class Trie:
 #     def __init__(self):

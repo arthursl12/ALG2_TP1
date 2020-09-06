@@ -1,5 +1,5 @@
 import pytest
-from trie import Node
+from node import Node
 
 # Dessa forma, os nós da árvore serão rotulados por pares de índices, identificando 
 # início e fim da substring no texto. 
@@ -51,3 +51,28 @@ class Test_Node:
         assert node != node1
         assert node1 != node
         assert node == node2
+
+class Test_NodePai:
+    @classmethod
+    def setup_class(cls):
+        cls.node0 = Node(1,2)
+        cls.node1 = Node(3,4)
+        cls.node2 = Node(8,8)
+
+    def test_sem_filhos(self):
+        assert self.node0.getChildren() == []
+        assert len(self.node0.getChildren()) == 0
+        assert self.node0.getParent() == None
+    
+    def test_filho(self):
+        self.node0.addChild(self.node1)
+        assert self.node0.getChildren()[0] == self.node1
+        assert self.node0.getChildren()[0].getParent() == self.node0
+
+    def test_filhos(self):
+        self.node0.addChild(self.node2)
+        assert len(self.node0.getChildren()) == 2
+        for node in self.node0.getChildren():
+            assert node.getParent() == self.node0
+    
+        
