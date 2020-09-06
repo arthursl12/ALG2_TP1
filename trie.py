@@ -20,7 +20,7 @@ class CompactTrie:
         else:
             string = self.texto[inicio:fim+1]
             searcher = TrieSearcher(self.texto, self, inicio, fim)
-            nodeAtual,casParcial = searcher.findNode()
+            nodeAtual,casParcial,casNode = searcher.findNode()
             match = checkPrefixSubstring(casParcial,string)
             if casParcial == '':
                 # String não casa parcialmente com nada na Trie
@@ -68,7 +68,7 @@ class CompactTrie:
         if self.isEmpty():
             return None
         string = self.texto[a:b+1]
-        nodeAtual,casParcial = TrieSearcher(self.texto, self, a, b).findNode()
+        nodeAtual,casParcial,casNode = TrieSearcher(self.texto, self, a, b).findNode()
         if casParcial == string:
             return nodeAtual
         else: 
