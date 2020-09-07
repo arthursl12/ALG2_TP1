@@ -31,3 +31,28 @@ class Node:
     
     def getParent(self):
         return self.parent
+
+    def labelPai(self, texto):
+        parent = self.parent
+        label = ''
+        if parent is not None:
+            grand = parent.parent
+            while grand is not None:
+                label = parent.labelNode(texto) + label
+                parent = grand
+                grand = grand.parent
+        return label
+    
+    def labelNode(self, texto):
+        if self.inicio == None or self.fim == None:
+            raise Exception
+        else:
+            return texto[self.inicio:self.fim+1] 
+
+
+    
+    def maiorSubstring(self, texto):
+        if self.inicio == None and self.fim == None:
+            return (1, self.labelPai(texto))
+        if len(self.children) == 0:
+            return (1,self.labelNode(texto))
