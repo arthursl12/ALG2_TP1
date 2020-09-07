@@ -75,3 +75,17 @@ class CompactTrie:
             return nodeAtual
         else: 
             return None
+        
+    def maiorSubstring(self):
+        if self.isEmpty():
+            return (1,'')
+        maior = 0
+        somaNodesSub = 0
+        strMaior = ''
+        for child in self.root.children:
+            qtd, string = child.maiorSubstring(self.texto)
+            somaNodesSub += qtd
+            if qtd >= 2 and len(string) > len(strMaior):
+                maior = qtd
+                strMaior = string
+        return (maior, strMaior)
