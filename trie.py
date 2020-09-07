@@ -25,7 +25,9 @@ class CompactTrie:
                 # String não casa parcialmente com nada na Trie
                 newNode = Node(inicio, fim)
                 self.root.addChild(newNode)
-            elif casParcial == string:
+            elif casParcial == string and casNode == string:
+                pass
+            elif casParcial == string and casNode != string:
                 # String casa parcialmente com o node atual
                 #Divide o nó atual
                 labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
@@ -49,7 +51,7 @@ class CompactTrie:
 
                 #Arruma o parent do newNodeParent
                 grandNode.addChild(newNodeParent)
-            elif casParcial == casNode:
+            elif casParcial == casNode and casNode != string:
                 # String casa perfeitamente com o nó atual
                 #Filho1: marcador de fim de palavra
                 newNodeSon = Node()
@@ -111,10 +113,3 @@ class CompactTrie:
                 maior = qtd
                 strMaior = string
         return (maior, strMaior)
-
-if __name__ == "__main__":
-    texto = 'GEEKSFORGEEKS'
-    trie = CompactTrie(texto)
-    for i in range(len(texto)):
-        trie.insert(i,len(texto)-1)
-    assert trie.maiorSubstring() == (2,'GEEKS')

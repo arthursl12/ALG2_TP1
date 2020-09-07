@@ -69,33 +69,3 @@ class Node:
         if maior == 0 and strMaior == '':
             return (somaNodesSub, self.labelPai(texto)+self.labelNode(texto))
         return (maior, strMaior)
-
-if __name__ == "__main__":
-    texto = 'she_sells_sea_shells_by_the_sea'
-    # node0 = Node()
-    # node1 = Node(17,19)
-    # node2 = Node(1,2)
-    # node2.addChild(node1)
-    # node2.addChild(node0)
-
-    # node3 = Node(6,8)
-    # node4 = Node(12,12)
-    # node5 = Node(5,5)
-    # node5.addChild(node3)
-    # node5.addChild(node4)
-
-    # node6 = Node(0,0)
-    # node6.addChild(node2)
-    # node6.addChild(node5)
-
-    # root = Node()
-    # root.addChild(node6)
-    # assert node6.maiorSubstring(texto) == (2, 'she')
-    # node0 = Node()
-    # node1 = Node(17,19)
-    # node2 = Node(0,2)
-    # node2.addChild(node1)
-    # node2.addChild(node0)
-    # root = Node()
-    # root.addChild(node2)
-    # assert node2.maiorSubstring(texto) == (2, 'she')

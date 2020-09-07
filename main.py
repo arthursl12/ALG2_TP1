@@ -22,8 +22,6 @@ def arquivoString(nomeArq):
 def main():
     string = arquivoString(NOME_ARQ)
     trie = criaArvoreSufixos(string)
-    print(string[0:800])
-
 
 if __name__=='__main__':
     main()
