@@ -26,9 +26,31 @@ class CompactTrie:
                 newNode = Node(inicio, fim)
                 self.root.addChild(newNode)
             elif casParcial == string:
-                pass
+                # String casa parcialmente com o node atual
+                #Divide o nó atual
+                labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
+                # n = checkPrefixSubstring(casNode,labelNode)
+                # labelParent = casNode[0:n+1]
+                matchNormalizado = match - (len(casNode) - len(labelNode))
+                newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
+                grandNode = nodeAtual.parent
+                grandNode.children.remove(nodeAtual)
+                newNodeParent.parent = nodeAtual.parent
+
+                #Filho2: label que sobrou do pai
+                newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
+                newNodeSon.children = nodeAtual.children
+                newNodeParent.addChild(newNodeSon)
+
+                #Filho1: novo (fim de palavra)
+                newNode = Node()
+                newNode.parent = newNodeParent
+                newNodeParent.addChild(newNode)
+
+                #Arruma o parent do newNodeParent
+                grandNode.addChild(newNodeParent)
             elif casParcial == casNode:
-                # String casa totalmente com o nó atual
+                # String casa perfeitamente com o nó atual
                 #Filho1: marcador de fim de palavra
                 newNodeSon = Node()
                 nodeAtual.addChild(newNodeSon)
@@ -85,7 +107,14 @@ class CompactTrie:
         for child in self.root.children:
             qtd, string = child.maiorSubstring(self.texto)
             somaNodesSub += qtd
-            if qtd >= 2 and len(string) > len(strMaior):
+            if qtd >= 2 and len(string) > len(strMaior) and len(string) > 1:
                 maior = qtd
                 strMaior = string
         return (maior, strMaior)
+
+if __name__ == "__main__":
+    texto = 'GEEKSFORGEEKS'
+    trie = CompactTrie(texto)
+    for i in range(len(texto)):
+        trie.insert(i,len(texto)-1)
+    assert trie.maiorSubstring() == (2,'GEEKS')

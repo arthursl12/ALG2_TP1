@@ -6,7 +6,7 @@ NOME_ARQ = 'sarscov2.fasta'
 def criaArvoreSufixos(string):
     trie = CompactTrie(string)
     for i in range(len(string)):
-        trie.insert(i,len(string))
+        trie.insert(i,len(string)-1)
     return trie
 
 def arquivoString(nomeArq):
