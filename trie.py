@@ -12,6 +12,29 @@ class CompactTrie:
             return True
         return False
     
+    def __divideNode(self, nodeAtual, casNode, match, newNode):
+        """
+        Divide o nodeAtual, sendo o primeiro filho
+        """
+        labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
+        matchNormalizado = match - (len(casNode) - len(labelNode))
+        newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
+        grandNode = nodeAtual.parent
+        grandNode.children.remove(nodeAtual)
+        newNodeParent.parent = nodeAtual.parent
+
+        #Filho: label que sobrou do pai
+        newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
+        newNodeSon.children = nodeAtual.children
+        newNodeParent.addChild(newNodeSon)
+
+        #Definindo nó-pai do novo
+        newNode.parent = newNodeParent
+        newNodeParent.addChild(newNode)
+
+        #Arruma o parent do newNodeParent
+        grandNode.addChild(newNodeParent)
+
     def insert(self, inicio, fim):
         if self.isEmpty():
             newNode = Node(inicio, fim)
@@ -29,34 +52,21 @@ class CompactTrie:
             newNode = Node(inicio, fim)
             self.root.addChild(newNode)
         elif casParcial == string and casNode == string:
+            # String já está na trie
             pass
         elif casParcial == string and casNode != string:
-            # String casa parcialmente com o node atual
-            #Divide o nó atual
-            labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
-            # n = checkPrefixSubstring(casNode,labelNode)
-            # labelParent = casNode[0:n+1]
-            matchNormalizado = match - (len(casNode) - len(labelNode))
-            newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
-            grandNode = nodeAtual.parent
-            grandNode.children.remove(nodeAtual)
-            newNodeParent.parent = nodeAtual.parent
-
-            #Filho2: label que sobrou do pai
-            newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
-            newNodeSon.children = nodeAtual.children
-            newNodeParent.addChild(newNodeSon)
-
+            # A string inteira é prefixo do nó
+            # (String representada pelo nó é maior que a string desejada,
+            # temos que quebrar o nó e adicionar um vazio como filho)
+            # Ex.: nó 'GEEKSFORGEEKS', adicionar 'GEEKS'
             #Filho1: novo (fim de palavra)
             newNode = Node()
-            newNode.parent = newNodeParent
-            newNodeParent.addChild(newNode)
+            self.__divideNode(nodeAtual, casNode, match, newNode)
 
-            #Arruma o parent do newNodeParent
-            grandNode.addChild(newNodeParent)
         elif casParcial == casNode and casNode != string:
-            # String casa perfeitamente com o nó atual
-            #Filho1: marcador de fim de palavra
+            # O nó inteiro é prefixo da string
+            # Ex.: nó 'she', adicionar 'shells'
+            #Filho1: marcador de fim de palavra (palavra que já estava no nó)
             newNodeSon = Node()
             nodeAtual.addChild(newNodeSon)
 
@@ -65,28 +75,13 @@ class CompactTrie:
             nodeAtual.addChild(newNode)
         else:
             # String casa parcialmente com o node atual
-            #Divide o nó atual
-            labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
-            # n = checkPrefixSubstring(casNode,labelNode)
-            # labelParent = casNode[0:n+1]
-            matchNormalizado = match - (len(casNode) - len(labelNode))
-            newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
-            grandNode = nodeAtual.parent
-            grandNode.children.remove(nodeAtual)
-            newNodeParent.parent = nodeAtual.parent
-
-            #Filho2: label que sobrou do pai
-            newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
-            newNodeSon.children = nodeAtual.children
-            newNodeParent.addChild(newNodeSon)
-
-            #Filho1: novo (fim de palavra)
+            #Filho1: novo nó
             newNode = Node(inicio+match, fim)
-            newNode.parent = newNodeParent
-            newNodeParent.addChild(newNode)
+            self.__divideNode(nodeAtual, casNode, match, newNode)
 
-            #Arruma o parent do newNodeParent
-            grandNode.addChild(newNodeParent)
+
+            
+
 
     def find(self, a, b):
         """
