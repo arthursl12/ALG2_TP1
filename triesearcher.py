@@ -3,9 +3,12 @@ from helper import checkPrefixSubstring
 class TrieSearcher:
     """
     Procura a substring texto[a,b] na Trie
-    Retorna último nó que representa a substring na Trie (ou o nó que deve
-    ser dividido caso desejemos inseri-la) e também a própria string 
-    (ou a porção da substring casada, se não está na Trie)
+    Retorna:
+        - O último nó que representa a substring na Trie (ou o nó que deve ser 
+        dividido caso desejemos inseri-la)
+        - A própria string (ou a porção da string casada, se não está na Trie)
+        - Que palavra representa esse último nó (se a busca teve sucesso, 
+        essa palavra é a própria string)
     """
     def __init__(self, texto, trie, a, b):
         self.texto = texto
@@ -14,8 +17,8 @@ class TrieSearcher:
         self.string = self.texto[a:b+1]   #String de interesse
         self.casParent = ''               #Padrão já casado nos nós acima
         self.casNode = ''                 #Padrão casado com o nó atual (esperado)
-        self.labelNode = ''               #Substring representada pelo node atual
         self.casParcial = ''              #Padrão casado com o nó atual (de fato)
+        self.labelNode = ''               #Substring representada pelo node atual
         self.nodeAtual = self.trie.root   #Node inicial da busca (raiz)
 
         self.it = iter(self.nodeAtual.children)
@@ -73,7 +76,9 @@ class TrieSearcher:
     
     def findNode(self):
         """
-        Faz a procura em si, criando os retornos
+        Inicia a busca pela string, procurando nos filhos da raiz, inicialmente,
+        e avançando nesse filho caso haja um casamento.
+        Faz os retornos descritos na docstring da classe
         """
         while self.child is not None:
             if (self.child.inicio == None and self.child.fim == None):
@@ -82,8 +87,11 @@ class TrieSearcher:
                 self.__searchChildren()
         
         if self.match == len(self.string) and self.casParcial == self.casNode:
+            # Busca com sucesso
             return self.nodeAtual, self.string, self.casParcial
         elif self.match == 0:
+            # Busca sem sucesso, exigindo nó totalmente novo
             return self.nodeAtual, self.casParcial, self.casParcial
         else:
+            # Busca sem sucesso, exigindo divisão de nós para inserção
             return self.nodeAtual, self.casParcial, self.casParent
