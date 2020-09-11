@@ -33,6 +33,9 @@ class Node:
         return self.parent
 
     def labelPai(self, texto):
+        """
+        Retorna o label dos nós acima do nó atual até a raiz
+        """
         parent = self.parent
         label = ''
         if parent is not None:
@@ -45,6 +48,9 @@ class Node:
         return label
     
     def labelNode(self, texto):
+        """
+        Retorna apenas o label do nó atual (label indicado pelos índices do nó)
+        """
         if self.inicio == None or self.fim == None:
             raise Exception
         else:

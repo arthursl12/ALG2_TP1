@@ -1,5 +1,6 @@
 from node import Node
 from triesearcher import TrieSearcher
+from trieinserter import TrieInserter
 from helper import checkPrefixSubstring
 
 class CompactTrie:
@@ -10,32 +11,12 @@ class CompactTrie:
     def isEmpty(self):
         if len(self.root.children) == 0:
             return True
-        return False
-    
-    def __divideNode(self, nodeAtual, casNode, match, newNode):
-        """
-        Divide o nodeAtual, sendo o primeiro filho
-        """
-        labelNode = self.texto[nodeAtual.inicio:nodeAtual.fim+1]
-        matchNormalizado = match - (len(casNode) - len(labelNode))
-        newNodeParent = Node(nodeAtual.inicio, nodeAtual.inicio+matchNormalizado-1)
-        grandNode = nodeAtual.parent
-        grandNode.children.remove(nodeAtual)
-        newNodeParent.parent = nodeAtual.parent
-
-        #Filho: label que sobrou do pai
-        newNodeSon = Node(nodeAtual.inicio+matchNormalizado,nodeAtual.fim)
-        newNodeSon.children = nodeAtual.children
-        newNodeParent.addChild(newNodeSon)
-
-        #Definindo nó-pai do novo
-        newNode.parent = newNodeParent
-        newNodeParent.addChild(newNode)
-
-        #Arruma o parent do newNodeParent
-        grandNode.addChild(newNodeParent)
+        return False       
 
     def insert(self, inicio, fim):
+        """
+        Insere a string [inicio:fim+1] na trie
+        """
         if self.isEmpty():
             newNode = Node(inicio, fim)
             self.root.addChild(newNode)
@@ -44,44 +25,8 @@ class CompactTrie:
         string = self.texto[inicio:fim+1]
         searcher = TrieSearcher(self.texto, self, inicio, fim)
         nodeAtual,casParcial,casNode = searcher.findNode()
-        match = checkPrefixSubstring(casParcial,string)
-
-    
-        if casParcial == '':
-            # String não casa parcialmente com nada na Trie
-            newNode = Node(inicio, fim)
-            self.root.addChild(newNode)
-        elif casParcial == string and casNode == string:
-            # String já está na trie
-            pass
-        elif casParcial == string and casNode != string:
-            # A string inteira é prefixo do nó
-            # (String representada pelo nó é maior que a string desejada,
-            # temos que quebrar o nó e adicionar um vazio como filho)
-            # Ex.: nó 'GEEKSFORGEEKS', adicionar 'GEEKS'
-            #Filho1: novo (fim de palavra)
-            newNode = Node()
-            self.__divideNode(nodeAtual, casNode, match, newNode)
-
-        elif casParcial == casNode and casNode != string:
-            # O nó inteiro é prefixo da string
-            # Ex.: nó 'she', adicionar 'shells'
-            #Filho1: marcador de fim de palavra (palavra que já estava no nó)
-            newNodeSon = Node()
-            nodeAtual.addChild(newNodeSon)
-
-            #Filho2: palavra nova que engloba uma que já existe na Trie
-            newNode = Node(inicio+match, fim)
-            nodeAtual.addChild(newNode)
-        else:
-            # String casa parcialmente com o node atual
-            #Filho1: novo nó
-            newNode = Node(inicio+match, fim)
-            self.__divideNode(nodeAtual, casNode, match, newNode)
-
-
-            
-
+        inserter = TrieInserter(self.texto, self, nodeAtual, casParcial, casNode, string)
+        inserter.insertNode(inicio, fim)
 
     def find(self, a, b):
         """
