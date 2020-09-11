@@ -116,4 +116,4 @@ class CompactTrie:
             if qtd >= 2 and len(string) > len(strMaior) and len(string) > 1:
                 maior = qtd
                 strMaior = string
-        return (maior, strMaior)
+        return maior, strMaior
