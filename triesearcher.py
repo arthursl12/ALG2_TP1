@@ -41,7 +41,7 @@ class TrieSearcher:
             # Busca com sucesso
             return self.nodeAtual, self.string, self.casParcial
         elif self.match == 0:
-            # Busca sem sucesso, exigindo nó totalmente novo
+            # Busca sem sucesso, exigindo nó totalmente novo na raiz
             return self.nodeAtual, self.casParcial, self.casParcial
         else:
             # Busca sem sucesso, exigindo divisão de nós para inserção

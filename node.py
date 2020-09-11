@@ -57,7 +57,6 @@ class Node:
             return texto[self.inicio:self.fim+1] 
 
 
-    
     def maiorSubstring(self, texto):
         if self.inicio == None and self.fim == None:
             return (1, self.labelPai(texto))

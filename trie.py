@@ -25,7 +25,8 @@ class CompactTrie:
         string = self.texto[inicio:fim+1]
         searcher = TrieSearcher(self.texto, self, inicio, fim)
         nodeAtual,casParcial,casNode = searcher.findNode()
-        inserter = TrieInserter(self.texto, self, nodeAtual, casParcial, casNode, string)
+        inserter = TrieInserter(self.texto, self, nodeAtual, 
+                                casParcial, casNode, string)
         inserter.insertNode(inicio, fim)
 
     def find(self, a, b):
@@ -37,7 +38,8 @@ class CompactTrie:
         if self.isEmpty():
             return None
         string = self.texto[a:b+1]
-        nodeAtual,casParcial,casNode = TrieSearcher(self.texto, self, a, b).findNode()
+        searcher = TrieSearcher(self.texto, self, a, b)
+        nodeAtual,casParcial,casNode = searcher.findNode()
         if casParcial == string:
             return nodeAtual
         else: 
