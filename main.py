@@ -23,7 +23,7 @@ def main():
     string = arquivoString(NOME_ARQ)
     trie = criaArvoreSufixos(string)
     qtd, strMaior = trie.maiorSubstring()
-    f = open('maior.txt','a')
+    f = open('maior.txt','w')
     f.write(str(qtd) + '\n' + strMaior)
     f.close()
 
