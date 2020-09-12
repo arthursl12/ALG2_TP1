@@ -1,0 +1,53 @@
+         6101035 function calls (6041249 primitive calls) in 2.343 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   487732    0.660    0.000    1.426    0.000 /home/arthur/ALG2_TP1/triesearcher.py:63(__searchChildren)
+   517634    0.401    0.000    0.594    0.000 /home/arthur/ALG2_TP1/helper.py:1(checkPrefixSubstring)
+    29902    0.204    0.000    1.701    0.000 /home/arthur/ALG2_TP1/triesearcher.py:28(findNode)
+   517634    0.127    0.000    0.127    0.000 {built-in method builtins.min}
+  2101805    0.124    0.000    0.124    0.000 {built-in method builtins.len}
+   487732    0.121    0.000    0.145    0.000 /home/arthur/ALG2_TP1/triesearcher.py:88(__casamentoValido)
+    78889    0.074    0.000    0.074    0.000 /home/arthur/ALG2_TP1/node.py:2(__init__)
+    29903    0.071    0.000    2.179    0.000 /home/arthur/ALG2_TP1/trie.py:16(insert)
+   710221    0.070    0.000    0.070    0.000 {built-in method builtins.next}
+    19098    0.067    0.000    0.129    0.000 /home/arthur/ALG2_TP1/trieinserter.py:77(__divideNode)
+  59790/4    0.054    0.000    0.132    0.033 /home/arthur/ALG2_TP1/node.py:60(maiorSubstring)
+   192592    0.051    0.000    0.069    0.000 /home/arthur/ALG2_TP1/triesearcher.py:50(__nodeFimPalavra)
+   165637    0.047    0.000    0.047    0.000 /home/arthur/ALG2_TP1/node.py:50(labelNode)
+    29902    0.046    0.000    0.053    0.000 /home/arthur/ALG2_TP1/triesearcher.py:13(__init__)
+    29902    0.037    0.000    0.263    0.000 /home/arthur/ALG2_TP1/trieinserter.py:18(insertNode)
+        1    0.029    0.029    2.211    2.211 /home/arthur/ALG2_TP1/main.py:6(criaArvoreSufixos)
+    20279    0.026    0.000    0.051    0.000 /home/arthur/ALG2_TP1/node.py:35(labelPai)
+    78888    0.023    0.000    0.030    0.000 /home/arthur/ALG2_TP1/node.py:28(addChild)
+   230346    0.022    0.000    0.022    0.000 {built-in method builtins.iter}
+    19098    0.020    0.000    0.158    0.000 /home/arthur/ALG2_TP1/trieinserter.py:57(__parcial)
+    29902    0.018    0.000    0.079    0.000 /home/arthur/ALG2_TP1/trieinserter.py:8(__init__)
+    29904    0.009    0.000    0.012    0.000 /home/arthur/ALG2_TP1/trie.py:11(isEmpty)
+    28456    0.009    0.000    0.012    0.000 /home/arthur/ALG2_TP1/node.py:18(__eq__)
+    19098    0.009    0.000    0.021    0.000 {method 'remove' of 'list' objects}
+    78888    0.007    0.000    0.007    0.000 {method 'append' of 'list' objects}
+    29893    0.005    0.000    0.005    0.000 /home/arthur/ALG2_TP1/trieinserter.py:49(__nodePrefix)
+    29899    0.005    0.000    0.005    0.000 /home/arthur/ALG2_TP1/trieinserter.py:42(__jaPresenteTrie)
+    28456    0.002    0.000    0.002    0.000 {built-in method builtins.isinstance}
+    19098    0.002    0.000    0.002    0.000 /home/arthur/ALG2_TP1/trieinserter.py:67(__stringPrefix)
+        1    0.000    0.000    0.000    0.000 /home/arthur/ALG2_TP1/main.py:12(arquivoString)
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+        1    0.000    0.000    0.000    0.000 {method 'close' of '_io.TextIOWrapper' objects}
+      427    0.000    0.000    0.000    0.000 {method 'isspace' of 'str' objects}
+        1    0.000    0.000    2.343    2.343 /home/arthur/ALG2_TP1/main.py:22(main)
+        1    0.000    0.000    0.132    0.132 /home/arthur/ALG2_TP1/trie.py:48(maiorSubstring)
+        6    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:319(decode)
+        2    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/_bootlocale.py:33(getpreferredencoding)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:309(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:186(__init__)
+        1    0.000    0.000    0.000    0.000 /home/arthur/ALG2_TP1/trie.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:260(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    0.000    0.000 {method 'readline' of '_io.TextIOWrapper' objects}
+
+
