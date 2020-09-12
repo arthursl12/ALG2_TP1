@@ -1,4 +1,3 @@
-import numpy as np
 from trie import CompactTrie
 
 NOME_ARQ = 'sarscov2.fasta'
