@@ -1,53 +1,194 @@
-         6101035 function calls (6041249 primitive calls) in 2.343 seconds
+         6200498 function calls (6139578 primitive calls) in 19.540 seconds
 
    Ordered by: internal time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-   487732    0.660    0.000    1.426    0.000 /home/arthur/ALG2_TP1/triesearcher.py:63(__searchChildren)
-   517634    0.401    0.000    0.594    0.000 /home/arthur/ALG2_TP1/helper.py:1(checkPrefixSubstring)
-    29902    0.204    0.000    1.701    0.000 /home/arthur/ALG2_TP1/triesearcher.py:28(findNode)
-   517634    0.127    0.000    0.127    0.000 {built-in method builtins.min}
-  2101805    0.124    0.000    0.124    0.000 {built-in method builtins.len}
-   487732    0.121    0.000    0.145    0.000 /home/arthur/ALG2_TP1/triesearcher.py:88(__casamentoValido)
-    78889    0.074    0.000    0.074    0.000 /home/arthur/ALG2_TP1/node.py:2(__init__)
-    29903    0.071    0.000    2.179    0.000 /home/arthur/ALG2_TP1/trie.py:16(insert)
-   710221    0.070    0.000    0.070    0.000 {built-in method builtins.next}
-    19098    0.067    0.000    0.129    0.000 /home/arthur/ALG2_TP1/trieinserter.py:77(__divideNode)
-  59790/4    0.054    0.000    0.132    0.033 /home/arthur/ALG2_TP1/node.py:60(maiorSubstring)
-   192592    0.051    0.000    0.069    0.000 /home/arthur/ALG2_TP1/triesearcher.py:50(__nodeFimPalavra)
-   165637    0.047    0.000    0.047    0.000 /home/arthur/ALG2_TP1/node.py:50(labelNode)
-    29902    0.046    0.000    0.053    0.000 /home/arthur/ALG2_TP1/triesearcher.py:13(__init__)
-    29902    0.037    0.000    0.263    0.000 /home/arthur/ALG2_TP1/trieinserter.py:18(insertNode)
-        1    0.029    0.029    2.211    2.211 /home/arthur/ALG2_TP1/main.py:6(criaArvoreSufixos)
-    20279    0.026    0.000    0.051    0.000 /home/arthur/ALG2_TP1/node.py:35(labelPai)
-    78888    0.023    0.000    0.030    0.000 /home/arthur/ALG2_TP1/node.py:28(addChild)
-   230346    0.022    0.000    0.022    0.000 {built-in method builtins.iter}
-    19098    0.020    0.000    0.158    0.000 /home/arthur/ALG2_TP1/trieinserter.py:57(__parcial)
-    29902    0.018    0.000    0.079    0.000 /home/arthur/ALG2_TP1/trieinserter.py:8(__init__)
-    29904    0.009    0.000    0.012    0.000 /home/arthur/ALG2_TP1/trie.py:11(isEmpty)
-    28456    0.009    0.000    0.012    0.000 /home/arthur/ALG2_TP1/node.py:18(__eq__)
-    19098    0.009    0.000    0.021    0.000 {method 'remove' of 'list' objects}
-    78888    0.007    0.000    0.007    0.000 {method 'append' of 'list' objects}
-    29893    0.005    0.000    0.005    0.000 /home/arthur/ALG2_TP1/trieinserter.py:49(__nodePrefix)
-    29899    0.005    0.000    0.005    0.000 /home/arthur/ALG2_TP1/trieinserter.py:42(__jaPresenteTrie)
-    28456    0.002    0.000    0.002    0.000 {built-in method builtins.isinstance}
-    19098    0.002    0.000    0.002    0.000 /home/arthur/ALG2_TP1/trieinserter.py:67(__stringPrefix)
-        1    0.000    0.000    0.000    0.000 /home/arthur/ALG2_TP1/main.py:12(arquivoString)
-        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+   517634    4.639    0.000    4.822    0.000 /home/arthur/ALG2_TP1/helper.py:1(checkPrefixSubstring)
+   487732    3.958    0.000    9.687    0.000 /home/arthur/ALG2_TP1/triesearcher.py:63(__searchChildren)
+        1    3.283    3.283   18.463   18.463 /home/arthur/ALG2_TP1/main.py:6(criaArvoreSufixos)
+    29902    2.008    0.000   12.090    0.000 /home/arthur/ALG2_TP1/triesearcher.py:28(findNode)
+   487732    1.144    0.000    1.174    0.000 /home/arthur/ALG2_TP1/triesearcher.py:88(__casamentoValido)
+    29903    0.576    0.000   15.172    0.001 /home/arthur/ALG2_TP1/trie.py:16(insert)
+  59790/4    0.457    0.000    1.031    0.258 /home/arthur/ALG2_TP1/node.py:60(maiorSubstring)
+    19098    0.425    0.000    0.779    0.000 /home/arthur/ALG2_TP1/trieinserter.py:77(__divideNode)
+   192592    0.369    0.000    0.393    0.000 /home/arthur/ALG2_TP1/triesearcher.py:50(__nodeFimPalavra)
+    20279    0.359    0.000    0.504    0.000 /home/arthur/ALG2_TP1/node.py:35(labelPai)
+    29902    0.306    0.000    0.316    0.000 /home/arthur/ALG2_TP1/triesearcher.py:13(__init__)
+    29902    0.273    0.000    1.510    0.000 /home/arthur/ALG2_TP1/trieinserter.py:18(insertNode)
+    78889    0.256    0.000    0.256    0.000 /home/arthur/ALG2_TP1/node.py:2(__init__)
+    29902    0.222    0.000    0.612    0.000 /home/arthur/ALG2_TP1/trieinserter.py:8(__init__)
+   165637    0.209    0.000    0.209    0.000 /home/arthur/ALG2_TP1/node.py:50(labelNode)
+    78888    0.159    0.000    0.169    0.000 /home/arthur/ALG2_TP1/node.py:28(addChild)
+2104225/2103915    0.153    0.000    0.153    0.000 {built-in method builtins.len}
+    19098    0.134    0.000    1.008    0.000 /home/arthur/ALG2_TP1/trieinserter.py:57(__parcial)
+   518384    0.108    0.000    0.108    0.000 {built-in method builtins.min}
+   710221    0.100    0.000    0.100    0.000 {built-in method builtins.next}
+    28456    0.074    0.000    0.077    0.000 /home/arthur/ALG2_TP1/node.py:18(__eq__)
+    29904    0.065    0.000    0.069    0.000 /home/arthur/ALG2_TP1/trie.py:11(isEmpty)
+    29893    0.059    0.000    0.059    0.000 /home/arthur/ALG2_TP1/trieinserter.py:49(__nodePrefix)
+    29899    0.052    0.000    0.052    0.000 /home/arthur/ALG2_TP1/trieinserter.py:42(__jaPresenteTrie)
+    19098    0.032    0.000    0.032    0.000 /home/arthur/ALG2_TP1/trieinserter.py:67(__stringPrefix)
+    19098    0.031    0.000    0.108    0.000 {method 'remove' of 'list' objects}
+   230348    0.030    0.000    0.030    0.000 {built-in method builtins.iter}
+    89254    0.010    0.000    0.010    0.000 {method 'append' of 'list' objects}
+     3623    0.005    0.000    0.005    0.000 {built-in method posix.lstat}
+    38621    0.004    0.000    0.004    0.000 {built-in method builtins.isinstance}
+     3623    0.004    0.000    0.006    0.000 /usr/lib/python3.8/posixpath.py:71(join)
+     1193    0.003    0.000    0.005    0.000 /usr/lib/python3.8/posixpath.py:334(normpath)
+  597/596    0.003    0.000    0.018    0.000 /usr/lib/python3.8/posixpath.py:396(_joinrealpath)
+      118    0.002    0.000    0.007    0.000 /usr/lib/python3.8/tokenize.py:429(_tokenize)
+        2    0.002    0.001    0.035    0.017 /usr/lib/python3.8/inspect.py:726(getmodule)
+     3623    0.002    0.000    0.007    0.000 /usr/lib/python3.8/posixpath.py:164(islink)
+      586    0.001    0.000    0.001    0.000 {built-in method posix.stat}
+      598    0.001    0.000    0.005    0.000 /usr/lib/python3.8/inspect.py:692(getsourcefile)
+    221/5    0.001    0.000    0.003    0.001 /usr/lib/python3.8/sre_parse.py:493(_parse)
+        1    0.001    0.001    0.001    0.001 /home/arthur/ALG2_TP1/main.py:13(arquivoString)
+     7800    0.001    0.000    0.001    0.000 {method 'startswith' of 'str' objects}
+     5413    0.001    0.000    0.002    0.000 /usr/lib/python3.8/posixpath.py:41(_get_sep)
+     1790    0.001    0.000    0.002    0.000 /usr/lib/python3.8/posixpath.py:60(isabs)
+     1193    0.001    0.000    0.007    0.000 /usr/lib/python3.8/posixpath.py:372(abspath)
+     6584    0.001    0.000    0.001    0.000 {method 'endswith' of 'str' objects}
+    280/2    0.001    0.000    0.002    0.001 /usr/lib/python3.8/sre_compile.py:71(_compile)
+     8992    0.001    0.000    0.001    0.000 {built-in method posix.fspath}
+     1196    0.001    0.000    0.002    0.000 {built-in method builtins.any}
+      597    0.001    0.000    0.010    0.000 /usr/lib/python3.8/inspect.py:714(getabsfile)
+        1    0.001    0.001   19.500   19.500 /home/arthur/ALG2_TP1/main.py:23(main)
+     3623    0.001    0.000    0.001    0.000 {method 'partition' of 'str' objects}
+      596    0.001    0.000    0.022    0.000 /usr/lib/python3.8/posixpath.py:387(realpath)
+      653    0.001    0.000    0.001    0.000 {built-in method builtins.hasattr}
+     1269    0.000    0.000    0.001    0.000 /usr/lib/python3.8/inspect.py:63(ismodule)
+     3623    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISLNK}
+     52/2    0.000    0.000    0.003    0.002 /usr/lib/python3.8/sre_parse.py:435(_parse_sub)
+     2360    0.000    0.000    0.001    0.000 /usr/lib/python3.8/inspect.py:702(<genexpr>)
+     1193    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+     1794    0.000    0.000    0.001    0.000 /usr/lib/python3.8/inspect.py:699(<genexpr>)
+     1537    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:164(__getitem__)
+      614    0.000    0.000    0.001    0.000 /usr/lib/python3.8/inspect.py:654(getfile)
+   306/29    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:174(getwidth)
+     1193    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+      584    0.000    0.000    0.002    0.000 /usr/lib/python3.8/genericpath.py:16(exists)
+      949    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:233(__next)
+        2    0.000    0.000    0.008    0.004 /usr/lib/python3.8/inspect.py:947(getblock)
+      110    0.000    0.000    0.006    0.000 /usr/lib/python3.8/re.py:287(_compile)
+      108    0.000    0.000    0.000    0.000 /usr/lib/python3.8/types.py:171(__get__)
+      116    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:903(tokeneater)
+       59    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:276(_optimize_charset)
+      597    0.000    0.000    0.000    0.000 /usr/lib/python3.8/posixpath.py:52(normcase)
+      667    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:254(get)
+      112    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+      736    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        3    0.000    0.000    0.000    0.000 {built-in method io.open}
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:793(show_results)
+      443    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:172(append)
+      510    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:249(match)
+      478    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:160(__len__)
+      305    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:111(__init__)
+      108    0.000    0.000    0.005    0.000 /usr/lib/python3.8/tokenize.py:98(_compile)
+      614    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+      110    0.000    0.000    0.006    0.000 /usr/lib/python3.8/re.py:248(compile)
+      116    0.000    0.000    0.000    0.000 <string>:1(__new__)
+       55    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:355(_escape)
+       59    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:249(_compile_charset)
+        2    0.000    0.000    0.035    0.018 /usr/lib/python3.8/inspect.py:772(findsource)
+      214    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:286(tell)
+        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:411(_mk_bitmap)
         1    0.000    0.000    0.000    0.000 {method 'close' of '_io.TextIOWrapper' objects}
+       42    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+      108    0.000    0.000    0.000    0.000 /usr/lib/python3.8/enum.py:659(value)
+        2    0.000    0.000    0.043    0.022 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:602(add)
+       51    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:432(_uniq)
+      390    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+      201    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+        1    0.000    0.000    1.031    1.031 /home/arthur/ALG2_TP1/trie.py:48(maiorSubstring)
+      189    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+       62    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:423(_simple)
+       51    0.000    0.000    0.000    0.000 {built-in method fromkeys}
+        9    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:319(decode)
+        2    0.000    0.000    0.043    0.022 /usr/lib/python3.8/inspect.py:958(getsourcelines)
+      2/1    0.000    0.000   19.500   19.500 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:696(f)
+      2/1    0.000    0.000   19.540   19.540 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:1110(wrapper)
       427    0.000    0.000    0.000    0.000 {method 'isspace' of 'str' objects}
-        1    0.000    0.000    2.343    2.343 /home/arthur/ALG2_TP1/main.py:22(main)
-        1    0.000    0.000    0.132    0.132 /home/arthur/ALG2_TP1/trie.py:48(maiorSubstring)
-        6    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
-        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:319(decode)
-        2    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+       26    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:84(opengroup)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:1126(choose_backend)
+      116    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x8ff5e0}
+        2    0.000    0.000    0.043    0.022 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:665(__call__)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:654(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/tokenize.py:388(open)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/linecache.py:82(updatecache)
+       57    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:81(groups)
+        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:413(<listcomp>)
+       63    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:168(__setitem__)
+        1    0.000    0.000    0.000    0.000 {method 'readlines' of '_io._IOBase' objects}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/linecache.py:53(checkcache)
+        2    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+        2    0.000    0.000    0.005    0.003 /usr/lib/python3.8/sre_compile.py:759(compile)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:493(unwrap)
+      108    0.000    0.000    0.000    0.000 {method 'span' of 're.Match' objects}
+       26    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:96(closegroup)
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/linecache.py:37(getlines)
         2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/_bootlocale.py:33(getpreferredencoding)
-        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:309(__init__)
-        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:186(__init__)
+       16    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:647(<genexpr>)
+       90    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
+        9    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        4    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:641(items)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:722(disable_by_count)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/tokenize.py:295(detect_encoding)
+       26    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:65(_combine_flags)
+       14    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:56(<lambda>)
+        2    0.000    0.000    0.003    0.002 /usr/lib/python3.8/sre_parse.py:937(parse)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:309(__init__)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:782(enable)
+        2    0.000    0.000    0.043    0.022 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:680(add_function)
+        2    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+        1    0.000    0.000    0.000    0.000 {method 'readline' of '_io.BufferedReader' objects}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:536(_compile_info)
         1    0.000    0.000    0.000    0.000 /home/arthur/ALG2_TP1/trie.py:7(__init__)
-        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:260(__init__)
-        1    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/enum.py:828(__and__)
+       10    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:260(iscode)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:894(__init__)
+        4    0.000    0.000    0.000    0.000 {built-in method sys.settrace}
+        8    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:1138(<genexpr>)
+       12    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:295(_class_escape)
+       23    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:715(enable_by_count)
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/enum.py:278(__call__)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:789(disable)
+        2    0.000    0.000    0.002    0.001 /usr/lib/python3.8/sre_compile.py:598(_code)
+        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:236(istraceback)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/tokenize.py:325(find_cookie)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:597(__init__)
+        6    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:246(isframe)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:224(__init__)
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/enum.py:557(__new__)
+        2    0.000    0.000    0.000    0.000 /home/arthur/.local/lib/python3.8/site-packages/memory_profiler.py:692(wrap_function)
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:80(ismethod)
+        1    0.000    0.000    0.000    0.000 {built-in method posix.readlink}
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:158(isfunction)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:921(fix_flags)
+        6    0.000    0.000    0.000    0.000 {method 'translate' of 'bytearray' objects}
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:72(isclass)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/inspect.py:510(_is_wrapper)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:186(__init__)
+        7    0.000    0.000    0.000    0.000 {method 'insert' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/tokenize.py:319(read_or_stop)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/codecs.py:260(__init__)
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_parse.py:76(__init__)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:492(_get_charset_prefix)
+        4    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:595(isstring)
+        8    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/tokenize.py:612(generate_tokens)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:461(_get_literal_prefix)
+        2    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'startswith' of 'bytes' objects}
+        3    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'seek' of '_io.BufferedReader' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.id}
+        2    0.000    0.000    0.000    0.000 {built-in method sys.getrecursionlimit}
+        2    0.000    0.000    0.000    0.000 {built-in method sys.gettrace}
+        2    0.000    0.000    0.000    0.000 /usr/lib/python3.8/sre_compile.py:453(_get_iscased)
+        1    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
         1    0.000    0.000    0.000    0.000 {method 'readline' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 

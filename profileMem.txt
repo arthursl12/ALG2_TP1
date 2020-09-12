@@ -1,24 +1,26 @@
-Partition of a set of 306330 objects. Total size = 36994473 bytes.
- Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
-     0  85673  28 10643643  29  10643643  29 str
-     1  67460  22  5335408  14  15979051  43 tuple
-     2  20174   7  3573482  10  19552533  53 types.CodeType
-     3  40265  13  3029990   8  22582523  61 bytes
-     4   2723   1  2656872   7  25239395  68 type
-     5  18640   6  2535040   7  27774435  75 function
-     6   3907   1  1485912   4  29260347  79 dict (no owner)
-     7    970   0  1476296   4  30736643  83 dict of module
-     8   2723   1  1306144   4  32042787  87 dict of type
-     9  30344  10   856512   2  32899299  89 int
-<654 more rows. Type e.g. '_.more' to view.>
-Filename: profiler.py
+Filename: /home/arthur/ALG2_TP1/main.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    28     79.5 MiB     79.5 MiB   @profile
-    29                             def memoryMain():
-    30     95.5 MiB     16.0 MiB       main.main()
+     6     36.8 MiB     36.8 MiB   @profile
+     7                             def criaArvoreSufixos(string):
+     8     36.8 MiB      0.0 MiB       trie = CompactTrie(string)
+     9     53.8 MiB      0.2 MiB       for i in range(len(string)):
+    10     53.8 MiB      0.3 MiB           trie.insert(i,len(string)-1)
+    11     53.8 MiB      0.0 MiB       return trie
 
 
-mprof: Sampling memory every 0.1s
-running as a Python program...
+Filename: /home/arthur/ALG2_TP1/main.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    23     36.6 MiB     36.6 MiB   @profile
+    24                             def main():
+    25     36.8 MiB      0.1 MiB       string = arquivoString(NOME_ARQ)
+    26     53.8 MiB     17.1 MiB       trie = criaArvoreSufixos(string)
+    27     53.8 MiB      0.0 MiB       qtd, strMaior = trie.maiorSubstring()
+    28     53.8 MiB      0.0 MiB       f = open('maior.txt','w')
+    29     53.8 MiB      0.0 MiB       f.write(str(qtd) + '\n' + strMaior)
+    30     53.8 MiB      0.0 MiB       f.close()
+
+
