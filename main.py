@@ -1,9 +1,9 @@
 from trie import CompactTrie
-from memory_profiler import profile
+# from memory_profiler import profile
 
 NOME_ARQ = 'sarscov2.fasta'
 
-@profile
+# @profile
 def criaArvoreSufixos(string):
     trie = CompactTrie(string)
     for i in range(len(string)):
@@ -20,7 +20,7 @@ def arquivoString(nomeArq):
             string += linha
     return string
 
-@profile
+# @profile
 def main():
     string = arquivoString(NOME_ARQ)
     trie = criaArvoreSufixos(string)

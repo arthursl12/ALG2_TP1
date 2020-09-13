@@ -1,26 +1,13 @@
-Filename: /home/arthur/ALG2_TP1/main.py
-
-Line #    Mem usage    Increment   Line Contents
-================================================
-     6     36.8 MiB     36.8 MiB   @profile
-     7                             def criaArvoreSufixos(string):
-     8     36.8 MiB      0.0 MiB       trie = CompactTrie(string)
-     9     53.8 MiB      0.2 MiB       for i in range(len(string)):
-    10     53.8 MiB      0.3 MiB           trie.insert(i,len(string)-1)
-    11     53.8 MiB      0.0 MiB       return trie
-
-
-Filename: /home/arthur/ALG2_TP1/main.py
-
-Line #    Mem usage    Increment   Line Contents
-================================================
-    23     36.6 MiB     36.6 MiB   @profile
-    24                             def main():
-    25     36.8 MiB      0.1 MiB       string = arquivoString(NOME_ARQ)
-    26     53.8 MiB     17.1 MiB       trie = criaArvoreSufixos(string)
-    27     53.8 MiB      0.0 MiB       qtd, strMaior = trie.maiorSubstring()
-    28     53.8 MiB      0.0 MiB       f = open('maior.txt','w')
-    29     53.8 MiB      0.0 MiB       f.write(str(qtd) + '\n' + strMaior)
-    30     53.8 MiB      0.0 MiB       f.close()
-
-
+Partition of a set of 277822 objects. Total size = 31899814 bytes.
+ Index  Count   %     Size   % Cumulative  % Kind (class / dict of class)
+     0  78678  28  8281974  26   8281974  26 str
+     1  60326  22  4807824  15  13089798  41 tuple
+     2  17645   6  3135354  10  16225152  51 types.CodeType
+     3  35242  13  2635652   8  18860804  59 bytes
+     4   2561   1  2518760   8  21379564  67 type
+     5  16371   6  2226456   7  23606020  74 function
+     6   3268   1  1370984   4  24977004  78 dict (no owner)
+     7    874   0  1235512   4  26212516  82 dict of module
+     8   2561   1  1192784   4  27405300  86 dict of type
+     9  30405  11   857812   3  28263112  89 int
+<566 more rows. Type e.g. '_.more' to view.>
